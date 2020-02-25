@@ -1,0 +1,12 @@
+<%- include("partials/header.ejs") %> 
+
+<h1>Grade Tracker</h1>
+
+<% courses.forEach((course)=>{ %>
+  <h3> <%= course.name %> </h3>
+  <h2> <%= course.courseGrade %> </h2>
+<% }) %>
+
+
+
+<%- include("partials/footer.ejs") %> 
