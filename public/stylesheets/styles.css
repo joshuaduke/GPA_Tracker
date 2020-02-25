@@ -48,22 +48,22 @@ header ul li {
   display: inline;
 }
 
-#container_nav {
+.container_nav {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
 }
 
-#container_nav ul {
+.container_nav ul {
   list-style-type: none;
 }
 
-#container_nav ul li {
+.container_nav ul li {
   display: inline;
 }
 
-main {
+main, #new_course {
   width: 400px;
   height: auto;
   background-color: #78a1bb;
@@ -74,15 +74,15 @@ main {
           box-shadow: 1px 1px 1px #000;
 }
 
-main #courses_container {
+main #courses_container, #new_course #courses_container {
   padding-top: 20px;
 }
 
-main #courses_container span {
+main #courses_container span, #new_course #courses_container span {
   font-size: 0.8em;
 }
 
-main #courses_container .course {
+main #courses_container .course, #new_course #courses_container .course {
   margin: 10px 0;
 }
 /*# sourceMappingURL=styles.css.map */

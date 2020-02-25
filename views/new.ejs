@@ -3,7 +3,7 @@
 <h1>Grade Tracker</h1>
 
 <main>
-  <div id="container_nav">
+  <div class="container_nav">
     <ul>
       <li><a href="#"> Semesters </a></li>
     </ul>
@@ -13,9 +13,10 @@
   </div>
 
   <div id="courses_container">
-    <button>
+    <a href="/courses/newCourses">
       <i class="fas fa-plus-circle"></i>New Course
-    </button>
+    </a>
+
     <% courses.forEach((course)=>{ %>
       <div class="course">
         <p>

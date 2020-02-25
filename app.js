@@ -35,6 +35,24 @@ app.get("/courses/new", (req, res)=>{
   });
 });
 
+//NEW COURSES ROUTE
+app.get("/courses/newCourses", (req, res)=>{
+  Course.find({}, (err, allCourses)=>{
+    if(err){
+      console.log(err);
+    } else{
+      res.render("newCourses", {courses: allCourses})
+    }
+  });
+});
+
+//CREATE ROUTE
+app.post("/courses", (req, res)=>{
+  res.send("hello");
+  //store add class name into database 
+  //display on course page
+}); 
+
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
 })

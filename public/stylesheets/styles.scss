@@ -43,7 +43,7 @@ header{
   }
 }
 
-#container_nav{
+.container_nav{
   display:grid;
   grid-template-columns: 1fr 1fr;
 
@@ -56,7 +56,7 @@ header{
   }
 }
 
-main{
+main, #new_course{
   width:400px;
   height:auto;
   background-color: $secondaryBkg;
