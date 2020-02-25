@@ -26,7 +26,13 @@ app.get("/courses", (req, res)=>{
 
 //NEW ROUTE
 app.get("/courses/new", (req, res)=>{
-  res.send("sadsffda");
+  Course.find({}, (err, allCourses)=>{
+    if(err){
+      console.log(err);
+    } else{
+      res.render("new", {courses: allCourses})
+    }
+  });
 });
 
 app.listen("3000", process.env.PORT, ()=>{
