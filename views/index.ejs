@@ -2,10 +2,27 @@
 
 <h1>Grade Tracker</h1>
 
-<% courses.forEach((course)=>{ %>
-  <h3> <%= course.name %> </h3>
-  <h2> <%= course.courseGrade %> </h2>
-<% }) %>
+<main>
+  <div id="container_nav">
+    <ul>
+      <li><a href="#"> Semesters </a></li>
+    </ul>
+    <ul>
+      <li><a href="#">Edit </a></li>
+    </ul>
+  </div>
+
+  <div id="courses_container">
+    <% courses.forEach((course)=>{ %>
+      <div class="course">
+        <p> <%= course.name %> </p>
+        <p><span><%= course.courseGrade %> </span> % </p>
+      </div>
+      <hr>
+    <% }) %>
+  </div>
+</main>
+
 
 
 

@@ -1,7 +1,78 @@
-h1{
-  color:red;
+@import "_variables.scss";
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
 }
 
 body{
-  background-color:blue;
+  background-color: $bkg;
+}
+
+h1{
+  color:$text;
+  text-align:center;
+}
+
+a{
+  text-decoration:none;
+}
+a:hover{
+  color:$brown;
+}
+
+header{
+  width:100%;
+  height:auto;
+  padding:20px;
+  background:$secondaryBkg;
+
+  nav{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+  }
+
+  ul{
+    list-style-type: none;
+
+    li{
+      display:inline;
+    }
+  }
+}
+
+#container_nav{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+
+  ul{
+    list-style-type: none;
+
+    li{
+      display: inline;
+    }
+  }
+}
+
+main{
+  width:50%;
+  height:auto;
+  background-color: $secondaryBkg;
+  margin:0 auto;
+  padding:20px;
+  border-radius:10px;
+  box-shadow: 1px 1px 1px #000;
+
+  #courses_container{
+    padding-top:20px;
+    span{
+      font-size:0.8em;
+    }
+
+    .course{
+      margin:10px 0;
+    }
+  }
 }

@@ -22,7 +22,12 @@ app.get("/courses", (req, res)=>{
       res.render("index", {courses: allCourses})
     }
   });
-} )
+});
+
+//NEW ROUTE
+app.get("/courses/new", (req, res)=>{
+  res.send("sadsffda");
+});
 
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
