@@ -53,6 +53,20 @@ app.post("/courses", (req, res)=>{
   //display on course page
 }); 
 
+//SHOW ROUTE 
+app.get("/courses/:id", (req, res)=>{
+  Course.findById(req.params.id, (err, foundCourse)=>{
+    if(err){
+      console.log("Show route error");
+      console.log(err);
+    } else {
+      console.log(foundCourse);
+      res.render("show", {course: foundCourse});
+    }
+  });
+});
+
+
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
 })
