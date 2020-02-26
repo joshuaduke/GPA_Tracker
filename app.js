@@ -80,7 +80,7 @@ app.get("/courses/:id", (req, res)=>{
   });
 });
 
-//Edit Route
+//EDIT ROUTE - Edit a specific route
 app.get("/courses/:id/edit", (req, res)=>{
   Course.findById(req.params.id, (err, foundCourse)=>{
     if(err){
@@ -91,6 +91,16 @@ app.get("/courses/:id/edit", (req, res)=>{
   });
 });
 
+//UPDATE ROUTE
+app.put("/courses/:id", (req, res)=>{
+ Course.findByIdAndUpdate(req.params.id ,req.body.course, (err, updatedCourse)=>{
+  if(err){
+    console.log("UPDATE ROUTE Error");
+  } else {
+    res.redirect("/courses/" + req.params.id);
+  }
+ });
+});
 
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
