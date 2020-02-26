@@ -93,9 +93,6 @@ app.get("/courses/:id", (req, res)=>{
   });
 });
 
-//NEW GRADE ROUTE -- Add a new test, assignment exam
-// app.get("/courses/:id")
-
 //EDIT ROUTE - Edit a specific route
 app.get("/courses/:id/edit", (req, res)=>{
   Course.findById(req.params.id, (err, foundCourse)=>{
