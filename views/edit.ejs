@@ -14,12 +14,15 @@
 
   <div id="courses_container">
       <div class="course">
-
+        <a href="/courses/newGrade">
+          <i class="fas fa-plus-circle"></i>New Grade
+        </a>
         <form action="/courses/<%= course._id %>?_method=PUT" method="POST">
           <div>
             <label>Course Name</label>
           </div>
           <input type="text" name="course[name]" value="<%= course.name %>">
+          
           <div>
             <label>Course Grade</label>
           </div>

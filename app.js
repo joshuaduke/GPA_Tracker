@@ -13,7 +13,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method")); //look for _method take whatever its equal to and treat that request as a put or delete request
 
 app.get("/", (req, res)=>{
-  res.send("This is a gpa app");
+  res.render("semesters");
 });
 
 //INDEX ROUTE -- display all courses
@@ -49,6 +49,19 @@ app.get("/courses/newCourses", (req, res)=>{
   });
 });
 
+//NEW GRADE ROUTE -- add a new Grade
+app.get("/courses/newGrade", (req, res)=>{
+  // Course.find({}, (err, allCourses)=>{
+  //   if(err){
+  //     console.log(err);
+  //   } else{
+  //     res.render("newGrade", {courses: allCourses})
+  //   }
+  // });
+  res.render("newGrade")
+});
+
+
 //CREATE ROUTE
 app.post("/courses", (req, res)=>{
   //get data from form and add to courses array
@@ -79,6 +92,9 @@ app.get("/courses/:id", (req, res)=>{
     }
   });
 });
+
+//NEW GRADE ROUTE -- Add a new test, assignment exam
+// app.get("/courses/:id")
 
 //EDIT ROUTE - Edit a specific route
 app.get("/courses/:id/edit", (req, res)=>{
@@ -135,5 +151,3 @@ app.listen("3000", process.env.PORT, ()=>{
 //     console.log(course);
 //   }
 // });
-
-//retrieve courses from database

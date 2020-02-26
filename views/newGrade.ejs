@@ -1,0 +1,26 @@
+<%- include("partials/header.ejs") %> 
+
+<h1>Grade Tracker</h1>
+
+<main>
+  <div class="container_nav">
+    <ul>
+      <li><a href="/courses"> <i class="fas fa-chevron-left"></i> Courses </a></li>
+    </ul>
+    <ul>
+      <li><a href="/courses">Save </a></li>
+    </ul>
+  </div>
+  
+  <h2>New Grade Item</h2>
+  <div id="courses_container">
+    <form action="/courses" method="POST">
+      <input type="text" placeholder="Class Name" name="name">
+      <!-- <input type="text" placeholder="Course Grade" name="courseGrade"> -->
+      <input type="submit">
+    </form>
+  </div>
+</main>
+
+
+<%- include("partials/footer.ejs") %>  
