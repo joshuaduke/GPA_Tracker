@@ -3,17 +3,20 @@ let app = express();
 let mongoose = require('mongoose');
 let Course = require("./models/courses");
 let bodyParser = require("body-parser");
+let methodOverride = require('method-override');
+
 
 mongoose.connect("mongodb://localhost/gpatracker", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
+app.use(methodOverride("_method")); //look for _method take whatever its equal to and treat that request as a put or delete request
 
 app.get("/", (req, res)=>{
   res.send("This is a gpa app");
 });
 
-//INDEX ROUTE
+//INDEX ROUTE -- display all courses
 app.get("/courses", (req, res)=>{
   Course.find({}, (err, allCourses)=>{
     if(err){
@@ -24,7 +27,7 @@ app.get("/courses", (req, res)=>{
   });
 });
 
-//NEW ROUTE
+//NEW ROUTE -- add or delete new courses
 app.get("/courses/new", (req, res)=>{
   Course.find({}, (err, allCourses)=>{
     if(err){
@@ -35,7 +38,7 @@ app.get("/courses/new", (req, res)=>{
   });
 });
 
-//NEW COURSES ROUTE
+//NEW COURSES ROUTE -- add a new course
 app.get("/courses/newCourses", (req, res)=>{
   Course.find({}, (err, allCourses)=>{
     if(err){
@@ -73,6 +76,17 @@ app.get("/courses/:id", (req, res)=>{
     } else {
       console.log(foundCourse);
       res.render("show", {course: foundCourse});
+    }
+  });
+});
+
+//Edit Route
+app.get("/courses/:id/edit", (req, res)=>{
+  Course.findById(req.params.id, (err, foundCourse)=>{
+    if(err){
+      res.redirect("/courses");
+    } else {
+      res.render("edit", {course:foundCourse});
     }
   });
 });
