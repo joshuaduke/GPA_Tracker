@@ -5,7 +5,7 @@
 <main>
   <div id="container_nav">
     <ul>
-      <li><a href="#"> Courses </a></li>
+      <li><a href="/courses"> Courses </a></li>
     </ul>
     <ul>
       <li><a href="/courses/new">Edit </a></li>
@@ -14,7 +14,7 @@
 
   <div id="courses_container">
       <div class="course">
-        
+
         <form action="/courses/<%= course._id %>?_method=PUT" method="POST">
           <div>
             <label>Course Name</label>

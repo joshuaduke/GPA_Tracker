@@ -20,7 +20,9 @@
     <% courses.forEach((course)=>{ %>
       <div class="course">
         <p>
-          <a href=""><i class="fas fa-minus-circle"></i></a> 
+          <form action="/courses/<%= course._id%>?_method=DELETE" method="POST">
+            <button><i class="fas fa-minus-circle"></i></button>
+          </form>
           <%= course.name %> 
         </p>
         <p><span><%= course.courseGrade %> </span> % </p>

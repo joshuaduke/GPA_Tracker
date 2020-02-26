@@ -102,6 +102,20 @@ app.put("/courses/:id", (req, res)=>{
  });
 });
 
+//DELETE ROUTE
+app.delete("/courses/:id", (req, res)=>{
+
+  Course.findByIdAndDelete(req.params.id, (err)=>{
+    if(err){
+      console.log("Delete Error");
+      console.log(err);
+      res.redirect("/courses");
+    } else {
+      res.redirect("/courses/new");
+    }
+  });
+});
+
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
 })
