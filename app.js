@@ -48,9 +48,20 @@ app.get("/courses/newCourses", (req, res)=>{
 
 //CREATE ROUTE
 app.post("/courses", (req, res)=>{
-  res.send("hello");
-  //store add class name into database 
-  //display on course page
+  //get data from form and add to courses array
+  let name = req.body.name;
+  let courseGrade = req.body.courseGrade;
+  let newCourses = {name:name , courseGrade:courseGrade};
+
+  //create a new course and save to database
+  Course.create(newCourses, (err, newlyCreated)=>{
+    if(err){
+      console.log("Create route error");
+    } else {
+      //redirect back to courses
+      res.redirect("/courses");
+    }
+  })
 }); 
 
 //SHOW ROUTE 
