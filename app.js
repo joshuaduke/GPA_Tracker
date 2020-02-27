@@ -1,13 +1,12 @@
 let express = require('express');
 let app = express();
 let mongoose = require('mongoose');
-
 let bodyParser = require("body-parser");
 let methodOverride = require('method-override');
+
 //Models
 let Course = require("./models/courses");
 let Semester = require("./models/semesters");
-
 
 mongoose.connect("mongodb://localhost/gpatracker", {useNewUrlParser: true});
 app.set("view engine", "ejs");
@@ -15,7 +14,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method")); //look for _method take whatever its equal to and treat that request as a put or delete request
 
-// ROUTE ROUTE -- display all semesters
+// -----   REST ROUTES FOR SEMESTERS ------ 
+
+//INDEX ROUTE -- display all semesters
 app.get("/", (req, res)=>{
   Semester.find({}, (err, allSemesters)=>{
     if(err){
@@ -27,14 +28,18 @@ app.get("/", (req, res)=>{
   });
 });
 
-// Semester.find({}, (err, semesters)=>{
-//   if(err){
-//     console.log(err)
-//   } else {
-//     console.log(semesters);
-//   }
-// })
+//NEW SEMESTER ROUTE -- add new semester
+app.get("/semesters/new", (req, res)=>{
+  Semester.find({}, (err, allSemesters)=>{
+    if(err){
+      console.log(err);
+    } else{
+      res.render("semestersNew", {semesters: allSemesters})
+    }
+  });
+});
 
+// ------ REST ROUTES FOR COURSES -----
 
 //INDEX ROUTE -- display all courses
 app.get("/courses", (req, res)=>{
@@ -68,32 +73,6 @@ app.get("/courses/newCourses", (req, res)=>{
     }
   });
 });
-
-//NEW SEMESTER ROUTE -- add or delete new semester
-app.get("/semesters/new", (req, res)=>{
-  Semester.find({}, (err, allSemesters)=>{
-    if(err){
-      console.log(err);
-    } else{
-      res.render("semestersNew", {semesters: allSemesters})
-    }
-  });
-});
-
-//NEW SEMESTER
-
-//NEW GRADE ROUTE -- add a new Grade
-app.get("/courses/newGrade", (req, res)=>{
-  // Course.find({}, (err, allCourses)=>{
-  //   if(err){
-  //     console.log(err);
-  //   } else{
-  //     res.render("newGrade", {courses: allCourses})
-  //   }
-  // });
-  res.render("newGrade")
-});
-
 
 //CREATE ROUTE
 app.post("/courses", (req, res)=>{
@@ -160,6 +139,20 @@ app.delete("/courses/:id", (req, res)=>{
       res.redirect("/courses/new");
     }
   });
+});
+
+// ----- REST ROUTES FOR GRADED WORK -----
+
+//NEW GRADE ROUTE -- add a new Grade
+app.get("/courses/newGrade", (req, res)=>{
+  // Course.find({}, (err, allCourses)=>{
+  //   if(err){
+  //     console.log(err);
+  //   } else{
+  //     res.render("newGrade", {courses: allCourses})
+  //   }
+  // });
+  res.render("newGrade")
 });
 
 app.listen("3000", process.env.PORT, ()=>{
