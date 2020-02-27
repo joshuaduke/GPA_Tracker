@@ -14,10 +14,14 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method")); //look for _method take whatever its equal to and treat that request as a put or delete request
 
+app.get("/", (req , res)=>{
+  res.redirect("/semesters");
+});
+
 // -----   REST ROUTES FOR SEMESTERS ------ 
 
-//INDEX ROUTE -- display all semesters
-app.get("/", (req, res)=>{
+  // INDEX ROUTE -- display all semesters
+app.get("/semesters", (req, res)=>{
   Semester.find({}, (err, allSemesters)=>{
     if(err){
       console.log("Main Route Error");
@@ -25,10 +29,14 @@ app.get("/", (req, res)=>{
     } else {
       res.render("semestersIndex", {semesters: allSemesters});
     }
+  }).sort({year: 'desc'}).exec((err, docs)=>{
+    if(err){
+      console.log(err);
+    }
   });
 });
 
-//NEW SEMESTER ROUTE -- add new semester
+  // NEW SEMESTER ROUTE -- display new semester form
 app.get("/semesters/new", (req, res)=>{
   Semester.find({}, (err, allSemesters)=>{
     if(err){
@@ -38,6 +46,31 @@ app.get("/semesters/new", (req, res)=>{
     }
   });
 });
+
+  // CREATE SEMESTER ROUTE -- add a new semester to database
+app.post("/semesters", (req, res)=>{
+  //get data from semester form and add to an array
+  let name = req.body.name;
+  let year = req.body.year;
+  let newSemester = {name:name, year:year};
+
+  //create a new semester and add to db
+  Semester.create(newSemester, (err, newlyCreated)=>{
+    if(err){
+      console.log("Semester Create Error");
+      console.log(err);
+    }else{
+      res.redirect("/semesters");
+    }
+  })
+});
+
+  // SHOW SEMESTER ROUTE -- Show info on 1 semester
+app.get("/semesters/:id", (req, res)=>{
+  //add courses collection to the semesters collection
+  //data associations
+});  
+
 
 // ------ REST ROUTES FOR COURSES -----
 
@@ -52,7 +85,8 @@ app.get("/courses", (req, res)=>{
   });
 });
 
-//NEW COURSES ROUTE -- add or delete new courses
+//NEW COURSES ROUTE -- display delete option for courses
+// delete this route and change for javascript functionality
 app.get("/courses/new", (req, res)=>{
   Course.find({}, (err, allCourses)=>{
     if(err){
@@ -63,7 +97,7 @@ app.get("/courses/new", (req, res)=>{
   });
 });
 
-//NEW COURSES ROUTE -- add a new course
+//NEW COURSES ROUTE -- display new course form
 app.get("/courses/newCourses", (req, res)=>{
   Course.find({}, (err, allCourses)=>{
     if(err){
@@ -74,7 +108,7 @@ app.get("/courses/newCourses", (req, res)=>{
   });
 });
 
-//CREATE ROUTE
+//CREATE ROUTE -- add new course
 app.post("/courses", (req, res)=>{
   //get data from form and add to courses array
   let name = req.body.name;

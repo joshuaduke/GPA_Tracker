@@ -3,11 +3,11 @@
 <main>
   <div class="container_nav">
     <ul>
-      <li><a href="/courses"> X </a></li>
+      <li><a href="/semesters"> X </a></li>
     </ul>
     <ul>
       <li><a id="edit" href="#">Edit </a></li>
-      <li><a class="hidden" href="/">Done </a></li>
+      <li><a class="hidden" href="/semesters">Done </a></li>
     </ul>
   </div>
 
@@ -22,7 +22,7 @@
       <div class="card">
 
         <div class="hide hidden">
-          <form action="/courses/<%= semester._id%>?_method=DELETE" method="POST">
+          <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
             <button><i class="fas fa-minus-circle"></i></button>
           </form>
         </div>
