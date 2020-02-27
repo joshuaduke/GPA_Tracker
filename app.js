@@ -67,10 +67,8 @@ app.post("/semesters", (req, res)=>{
 
   // SHOW SEMESTER ROUTE -- Show info on 1 semester
 app.get("/semesters/:id", (req, res)=>{
-  //add courses collection to the semesters collection
-  //data associations
+  //add courses collection to the semesters collection with data associations
 });  
-
 
 // ------ REST ROUTES FOR COURSES -----
 
