@@ -1,9 +1,12 @@
 let express = require('express');
 let app = express();
 let mongoose = require('mongoose');
-let Course = require("./models/courses");
+
 let bodyParser = require("body-parser");
 let methodOverride = require('method-override');
+//Models
+let Course = require("./models/courses");
+let Semester = require("/models/semesters");
 
 
 mongoose.connect("mongodb://localhost/gpatracker", {useNewUrlParser: true});

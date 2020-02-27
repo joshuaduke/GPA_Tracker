@@ -103,7 +103,7 @@ main #courses_container .course p, #new_course #courses_container .course p {
   padding-left: 30px;
 }
 
-.course_name {
+.show_course_name {
   text-align: center;
   padding: 10px 0;
   font-size: 1.2em;
