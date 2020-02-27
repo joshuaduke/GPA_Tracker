@@ -12,18 +12,24 @@
 
   <div id="courses_container">
     <a href="/courses/newCourses">
-      <i class="fas fa-plus-circle"></i>New Course
+      <i class="fas fa-plus-circle"></i>New Semester
     </a>
 
-    <% courses.forEach((course)=>{ %>
-      <div class="course">
-        <p>
-          <form action="/courses/<%= course._id%>?_method=DELETE" method="POST">
+    <% semesters.forEach((semester)=>{ %>
+      <div class="course card">
+
+        <div>
+          <form action="/courses/<%= semester._id%>?_method=DELETE" method="POST">
             <button><i class="fas fa-minus-circle"></i></button>
           </form>
-          <%= course.name %> 
-        </p>
-        <p><span><%= course.courseGrade %> </span> % </p>
+        </div>
+        
+        <div>
+          <p >
+            <%= semester.name %> <%= semester.year %>
+          </p>
+        </div>
+        
       </div>
       <hr>
     <% }) %>

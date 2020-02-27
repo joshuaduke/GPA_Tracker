@@ -47,7 +47,7 @@ app.get("/courses", (req, res)=>{
   });
 });
 
-//NEW ROUTE -- add or delete new courses
+//NEW COURSES ROUTE -- add or delete new courses
 app.get("/courses/new", (req, res)=>{
   Course.find({}, (err, allCourses)=>{
     if(err){
@@ -79,6 +79,8 @@ app.get("/semesters/new", (req, res)=>{
     }
   });
 });
+
+//NEW SEMESTER
 
 //NEW GRADE ROUTE -- add a new Grade
 app.get("/courses/newGrade", (req, res)=>{

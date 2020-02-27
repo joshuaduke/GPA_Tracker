@@ -116,4 +116,8 @@ main #courses_container span, #new_course #courses_container span {
   font-size: 1.2em;
   letter-spacing: 2px;
 }
+
+.hidden {
+  display: none;
+}
 /*# sourceMappingURL=styles.css.map */
