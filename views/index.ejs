@@ -1,9 +1,7 @@
 <%- include("partials/header.ejs") %> 
 
-<h1>Grade Tracker</h1>
-
 <main>
-  <div id="container_nav">
+  <div class="container_nav">
     <ul>
       <li><a href="/"> Semesters </a></li>
     </ul>
@@ -16,7 +14,7 @@
     <% courses.forEach((course)=>{ %>
 
       <div>
-        <a class="course" href="/courses/<%= course._id%>">
+        <a class="card" href="/courses/<%= course._id%>">
           <p class="course_name">
             <i class="fas fa-school"></i> 
             <%= course.name %>

@@ -32,6 +32,7 @@ header {
 }
 
 header nav {
+  width: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -43,10 +44,16 @@ header nav {
 
 header ul {
   list-style-type: none;
+  display: inline;
 }
 
 header ul li {
   display: inline;
+  margin: 0 10px;
+}
+
+header ul div {
+  float: right;
 }
 
 .container_nav {
@@ -89,7 +96,7 @@ main #courses_container span, #new_course #courses_container span {
   font-size: 0.8em;
 }
 
-main #courses_container .course, #new_course #courses_container .course {
+.card {
   display: block;
   width: 100%;
   height: auto;
@@ -99,7 +106,7 @@ main #courses_container .course, #new_course #courses_container .course {
   margin: 10px auto;
 }
 
-main #courses_container .course p, #new_course #courses_container .course p {
+.card p {
   padding-left: 30px;
 }
 

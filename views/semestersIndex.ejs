@@ -1,15 +1,21 @@
 <%- include("partials/header.ejs") %> 
 
-<h1>Grade Tracker</h1>
-
 <main>
-  <div id="container_nav">
+  <div class="container_nav">
     <ul>
       <li><a href="/courses"> X </a></li>
     </ul>
     <ul>
       <li><a href="/">Edit </a></li>
     </ul>
+  </div>
+
+  <div>
+    <% semesters.forEach((semester) =>{ %>
+      <div class="card">
+        <p > <%= semester.name%> <%= semester.year %>  </p>
+      </div>
+    <% }) %>
   </div>
 
 </main>

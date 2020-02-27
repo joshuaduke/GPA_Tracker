@@ -22,7 +22,7 @@ app.get("/", (req, res)=>{
       console.log("Main Route Error");
       console.log("err");
     } else {
-      res.render("indexSemesters", {semesters: allSemesters});
+      res.render("semestersIndex", {semesters: allSemesters});
     }
   });
 });
@@ -65,6 +65,17 @@ app.get("/courses/newCourses", (req, res)=>{
       console.log(err);
     } else{
       res.render("newCourses", {courses: allCourses})
+    }
+  });
+});
+
+//NEW SEMESTER ROUTE -- add or delete new semester
+app.get("/semesters/new", (req, res)=>{
+  Semester.find({}, (err, allSemesters)=>{
+    if(err){
+      console.log(err);
+    } else{
+      res.render("semestersNew", {semesters: allSemesters})
     }
   });
 });
