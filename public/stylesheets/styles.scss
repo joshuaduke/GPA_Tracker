@@ -1,9 +1,15 @@
 @import "_variables.scss";
 
+@mixin center(){
+  text-align: center;
+  padding:10px 0;
+}
+
 *{
   margin:0;
   padding:0;
   box-sizing: border-box;
+  line-height:1.5rem;
 }
 
 body{
@@ -52,6 +58,14 @@ header{
 
     li{
       display: inline;
+      margin:0 20px;
+      text-transform: uppercase;
+    }
+  }
+
+  ul:nth-of-type(2){
+    li{
+      float:right;
     }
   }
 }
@@ -62,7 +76,7 @@ main, #new_course{
   background-color: $secondaryBkg;
   margin:0 auto;
   padding:20px;
-  border-radius:10px;
+  border-radius:15px;
   box-shadow: 1px 1px 1px #000;
 
   #courses_container{
@@ -72,7 +86,25 @@ main, #new_course{
     }
 
     .course{
-      margin:10px 0;
+      display: block;
+      width:100%;
+      height:auto;
+      background-color:#fff;
+      padding:20px 0;
+      border-radius:15px;
+      margin:10px auto;
+
+      p{
+        padding-left:30px;
+      }
     }
   }
+}
+
+//SHOW PAGE
+
+.course_name{
+  @include center();
+  font-size: 1.2em;
+  letter-spacing: 2px;
 }

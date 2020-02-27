@@ -5,7 +5,7 @@
 <main>
   <div id="container_nav">
     <ul>
-      <li><a href="#"> Semesters </a></li>
+      <li><a href="/"> Semesters </a></li>
     </ul>
     <ul>
       <li><a href="/courses/new">Edit </a></li>
@@ -14,11 +14,17 @@
 
   <div id="courses_container">
     <% courses.forEach((course)=>{ %>
-      <div class="course">
-        <a href="/courses/<%= course._id%>"> <p><%= course.name %></p> </a>
-        <p><span><%= course.courseGrade %> </span> % </p>
+
+      <div>
+        <a class="course" href="/courses/<%= course._id%>">
+          <p class="course_name">
+            <i class="fas fa-school"></i> 
+            <%= course.name %>
+          </p> 
+          <p><span><%= course.courseGrade %> </span> % </p> 
+      </a>
       </div>
-      <hr>
+      
     <% }) %>
   </div>
 </main>

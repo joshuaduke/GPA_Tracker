@@ -93,7 +93,7 @@ app.get("/courses/:id", (req, res)=>{
   });
 });
 
-//EDIT ROUTE - Edit a specific route
+//EDIT ROUTE - Edit a specific course
 app.get("/courses/:id/edit", (req, res)=>{
   Course.findById(req.params.id, (err, foundCourse)=>{
     if(err){
