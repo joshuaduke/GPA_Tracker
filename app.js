@@ -6,7 +6,7 @@ let bodyParser = require("body-parser");
 let methodOverride = require('method-override');
 //Models
 let Course = require("./models/courses");
-let Semester = require("/models/semesters");
+let Semester = require("./models/semesters");
 
 
 mongoose.connect("mongodb://localhost/gpatracker", {useNewUrlParser: true});
@@ -15,9 +15,26 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method")); //look for _method take whatever its equal to and treat that request as a put or delete request
 
+// ROUTE ROUTE -- display all semesters
 app.get("/", (req, res)=>{
-  res.render("semesters");
+  Semester.find({}, (err, allSemesters)=>{
+    if(err){
+      console.log("Main Route Error");
+      console.log("err");
+    } else {
+      res.render("indexSemesters", {semesters: allSemesters});
+    }
+  });
 });
+
+// Semester.find({}, (err, semesters)=>{
+//   if(err){
+//     console.log(err)
+//   } else {
+//     console.log(semesters);
+//   }
+// })
+
 
 //INDEX ROUTE -- display all courses
 app.get("/courses", (req, res)=>{
