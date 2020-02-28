@@ -3,7 +3,9 @@ let app = express();
 let mongoose = require('mongoose');
 let bodyParser = require("body-parser");
 let methodOverride = require('method-override');
+let seedDB = require('./seeds');
 
+seedDB();
 //Models
 let Course = require("./models/courses");
 let Semester = require("./models/semesters");
@@ -18,7 +20,7 @@ app.get("/", (req , res)=>{
   res.redirect("/semesters");
 });
 
-// -----   REST ROUTES FOR SEMESTERS ------ 
+// -------------   REST ROUTES FOR SEMESTERS ----------- 
 
   // INDEX ROUTE -- display all semesters
 app.get("/semesters", (req, res)=>{
@@ -68,6 +70,11 @@ app.post("/semesters", (req, res)=>{
   // SHOW SEMESTER ROUTE -- Show info on 1 semester
 app.get("/semesters/:id", (req, res)=>{
   //add courses collection to the semesters collection with data associations
+});
+
+  //EDIT SEMESTER ROUTE -- Edit form for a semester
+app.get("/semesters/:id/edit", (req , res)=>{
+
 });  
 
 // ------ REST ROUTES FOR COURSES -----
