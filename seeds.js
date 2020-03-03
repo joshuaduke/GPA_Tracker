@@ -2,6 +2,8 @@ let mongoose = require("mongoose");
 let Course  = require("./models/courses");
 let Semester = require("./models/semesters");
 
+
+//create default data for the Semester Collection
 let semesterData = [
   {
     name: "Summer",
@@ -31,11 +33,12 @@ function seedDB(){
 
     //add a few semesters
     semesterData.forEach((term)=>{
-    Semester.create(term, (err, semester)=>{
-      if(err){
-        console.log(err);
-      } else {
-        console.log("Added a Semester");
+
+      Semester.create(term, (err, semester)=>{
+        if(err){
+          console.log(err);
+        } else {
+          console.log("Added a Semester");
 
         //create a course
         Course.create({
@@ -53,8 +56,6 @@ function seedDB(){
       }
     })
     });
-
-
   });
 }
 

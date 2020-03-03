@@ -1,0 +1,38 @@
+<%- include("../partials/header.ejs") %> 
+
+<main>
+  <div class="container_nav">
+    <ul>
+      <li><a href="/courses"> Courses </a></li>
+    </ul>
+    <ul>
+      <li><a href="/courses/<%= semester.courses._id %>/edit">Edit </a></li>
+    </ul>
+  </div>
+
+  <div id="courses_container">
+    <div class="show_course_name">
+      <p><%= semester.courses.name %></p>
+    </div>
+      <div class="course">
+
+
+        <div class="grade_grid">
+          <div>
+            <p>Current Grade</p>
+            <p><%= semester.courses.courseGrade %> %</p>
+          </div>
+          <div>
+            <p>Target Grade</p>
+          </div>
+        </div>
+
+
+      </div>  
+  </div>
+</main>
+
+
+
+
+<%- include("../partials/footer.ejs") %> 

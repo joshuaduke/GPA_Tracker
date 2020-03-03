@@ -5,7 +5,6 @@ let bodyParser = require("body-parser");
 let methodOverride = require('method-override');
 let seedDB = require('./seeds');
 
-seedDB();
 //Models
 let Course = require("./models/courses");
 let Semester = require("./models/semesters");
@@ -15,12 +14,15 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method")); //look for _method take whatever its equal to and treat that request as a put or delete request
+seedDB();
 
 app.get("/", (req , res)=>{
   res.redirect("/semesters");
 });
 
+//======================================================
 // -------------   REST ROUTES FOR SEMESTERS ----------- 
+//======================================================
 
   // INDEX ROUTE -- display all semesters
 app.get("/semesters", (req, res)=>{
@@ -29,7 +31,7 @@ app.get("/semesters", (req, res)=>{
       console.log("Main Route Error");
       console.log("err");
     } else {
-      res.render("semestersIndex", {semesters: allSemesters});
+      res.render("semesters/semestersIndex", {semesters: allSemesters});
     }
   }).sort({year: 'desc'}).exec((err, docs)=>{
     if(err){
@@ -44,7 +46,7 @@ app.get("/semesters/new", (req, res)=>{
     if(err){
       console.log(err);
     } else{
-      res.render("semestersNew", {semesters: allSemesters})
+      res.render("semesters/semestersNew", {semesters: allSemesters})
     }
   });
 });
@@ -67,25 +69,50 @@ app.post("/semesters", (req, res)=>{
   })
 });
 
-  // SHOW SEMESTER ROUTE -- Show info on 1 semester
+  // SHOW SEMESTER ROUTE -- Show which courses belong to 1 semester
 app.get("/semesters/:id", (req, res)=>{
-  //add courses collection to the semesters collection with data associations
+  //find semester with provided ID
+  Semester.findById(req.params.id).populate("courses").exec((err, foundSemester)=>{
+    if(err){
+      console.log(err)
+    } else {
+      console.log(foundSemester);
+      res.render("courses/index", {semester: foundSemester});
+    }
+  })
 });
 
   //EDIT SEMESTER ROUTE -- Edit form for a semester
 app.get("/semesters/:id/edit", (req , res)=>{
 
-});  
+}); 
 
+// ====================================
 // ------ REST ROUTES FOR COURSES -----
+// ====================================
+
+// app.get("/semesters", (req, res)=>{
+//   Semester.find({}, (err, allSemesters)=>{
+//     if(err){
+//       console.log("Main Route Error");
+//       console.log("err");
+//     } else {
+//       res.render("semesters/semestersIndex", {semesters: allSemesters});
+//     }
+//   }).sort({year: 'desc'}).exec((err, docs)=>{
+//     if(err){
+//       console.log(err);
+//     }
+//   });
+// });
 
 //INDEX ROUTE -- display all courses
-app.get("/courses", (req, res)=>{
-  Course.find({}, (err, allCourses)=>{
+app.get("/semesters/:id/courses", (req, res)=>{
+  Semester.findById(req.params.id, (err, semester)=>{
     if(err){
       console.log(err);
     } else{
-      res.render("index", {courses: allCourses})
+      res.render("courses/index", {semester: semester})
     }
   });
 });
@@ -97,7 +124,7 @@ app.get("/courses/new", (req, res)=>{
     if(err){
       console.log(err);
     } else{
-      res.render("new", {courses: allCourses})
+      res.render("courses/new", {courses: allCourses})
     }
   });
 });
@@ -108,7 +135,7 @@ app.get("/courses/newCourses", (req, res)=>{
     if(err){
       console.log(err);
     } else{
-      res.render("newCourses", {courses: allCourses})
+      res.render("courses/newCourses", {courses: allCourses})
     }
   });
 });
@@ -139,7 +166,7 @@ app.get("/courses/:id", (req, res)=>{
       console.log(err);
     } else {
       console.log(foundCourse);
-      res.render("show", {course: foundCourse});
+      res.render("courses/show", {course: foundCourse});
     }
   });
 });
@@ -150,7 +177,7 @@ app.get("/courses/:id/edit", (req, res)=>{
     if(err){
       res.redirect("/courses");
     } else {
-      res.render("edit", {course:foundCourse});
+      res.render("courses/edit", {course:foundCourse});
     }
   });
 });
@@ -191,7 +218,7 @@ app.get("/courses/newGrade", (req, res)=>{
   //     res.render("newGrade", {courses: allCourses})
   //   }
   // });
-  res.render("newGrade")
+  res.render("courses/newGrade")
 });
 
 app.listen("3000", process.env.PORT, ()=>{

@@ -1,4 +1,4 @@
-<%- include("partials/header.ejs") %> 
+<%- include("../partials/header.ejs") %> 
 
 <main>
   <div class="container_nav">
@@ -11,13 +11,14 @@
   </div>
 
   <div id="courses_container">
-    <% courses.forEach((course)=>{ %>
+    <% semester.courses.forEach((course)=>{ %>
 
       <div>
         <a class="card" href="/courses/<%= course._id%>">
           <p class="course_name">
             <i class="fas fa-school"></i> 
             <%= course.name %>
+            <% console.log(course.name) %>
           </p> 
           <p><span><%= course.courseGrade %> </span> % </p> 
       </a>
@@ -30,4 +31,4 @@
 
 
 
-<%- include("partials/footer.ejs") %> 
+<%- include("../partials/footer.ejs") %> 
