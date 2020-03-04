@@ -158,6 +158,21 @@ app.post("/semesters/:id/courses", (req, res)=>{
 // ------ REST ROUTES FOR GRADES ------
 // ====================================
 
+
+// INDEX ROUTE -- Display all Grades
+app.get("/semesters/:id/courses/:courseid/grades", (req, res)=>{
+  Course.findById(req.params.courseid).populate("grades").exec((err, allGrades)=>{
+    if(err){
+      console.log(err);
+    } else {
+      console.log("===== ALL GRADES ======");
+      console.log(allGrades)
+      res.render("grades/index", {allGrades: allGrades});
+    }
+  });
+}); 
+
+
 // add a new grade
 // let web322 = new Grade({
 //   grades: [98, 76, 83, 54]

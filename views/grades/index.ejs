@@ -1,5 +1,6 @@
 <%- include("../partials/header.ejs") %> 
 
+
 <main>
   <div class="container_nav">
     <ul>
@@ -11,25 +12,14 @@
     </ul>
   </div>
 
-  <section>
-    <div class="hidden">
-      <a href="/semesters/<%=semester._id%>/courses/new">
-        <i class="fas fa-plus-circle"></i>New Course
-      </a>
-    </div>
-  </section>
-
   <div id="courses_container">
-    <% console.log("===== INDEX PAGE =====") %>
-    <% console.log(semester.courses) %>
-    <% semester.courses.forEach((course)=>{ %>
-
-    <% console.log("========= COURSE ======="); %>  
-    <% console.log(course); %>
-    <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades">
+    <% allGrades.grades.forEach((grade)=>{ %>
+      <% console.log("======= GRADE ======") %>
+      <% console.log(grade) %>
+    <a href="#">
       <div class="card">
         <div class="hide hidden">
-          <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
+          <form action="" method="POST">
             <button>
               <i class="fas fa-minus-circle"></i>
             </button>
@@ -38,14 +28,18 @@
         <div>
           <p class="course_name">
             <i class="fas fa-school"></i> 
-            <%= course.name %>
+            <%= grade.assignmentName %>
           </p>
-          <p><span><%= course.courseGrade %> </span> % </p>  
+          <p>
+            <%= grade.grade %> 
+          </p>
+          
+
+            
         </div>
       </div>
     </a>  
 
-      
     <% }) %>
   </div>
 </main>
@@ -65,7 +59,6 @@
   });
 
 </script>
-
 
 
 
