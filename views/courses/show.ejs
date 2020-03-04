@@ -1,38 +1,9 @@
-<%- include("partials/header.ejs") %> 
+<%- include("../partials/header.ejs") %> 
 
-<main>
-  <div class="container_nav">
-    <ul>
-      <li><a href="/courses"> Courses </a></li>
-    </ul>
-    <ul>
-      <li><a href="/courses/<%= course._id %>/edit">Edit </a></li>
-    </ul>
-  </div>
+<h1>Hello</h1>
 
-  <div id="courses_container">
-    <div class="show_course_name">
-      <p><%= course.name %></p>
-    </div>
-      <div class="course">
-
-
-        <div class="grade_grid">
-          <div>
-            <p>Current Grade</p>
-            <p><%= course.courseGrade %> %</p>
-          </div>
-          <div>
-            <p>Target Grade</p>
-          </div>
-        </div>
-
-
-      </div>  
-  </div>
-</main>
+<% console.log(semester) %>
 
 
 
-
-<%- include("partials/footer.ejs") %> 
+<%- include("../partials/footer.ejs") %> 

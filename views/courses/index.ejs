@@ -11,17 +11,17 @@
   </div>
 
   <div id="courses_container">
-    <% semester.courses.forEach((course)=>{ %>
+    <% console.log("===== INDEX PAGE =====") %>
+    <% console.log(courses) %>
+    <% courses.forEach((course)=>{ %>
 
       <div>
-        <a class="card" href="/courses/<%= course._id%>">
           <p class="course_name">
             <i class="fas fa-school"></i> 
             <%= course.name %>
-            <% console.log(course.name) %>
+            
           </p> 
           <p><span><%= course.courseGrade %> </span> % </p> 
-      </a>
       </div>
       
     <% }) %>

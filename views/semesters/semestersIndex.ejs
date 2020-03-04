@@ -19,7 +19,7 @@
     </div>
 
     <% semesters.forEach((semester) =>{ %>
-      <a href="/semesters/<%= semester._id %>">
+      <a href="/semesters/">
         <div class="card">
           <div class="hide hidden">
             <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">

@@ -1,0 +1,23 @@
+<%- include("../partials/header.ejs") %> 
+
+<main>
+  <div class="container_nav">
+    <ul>
+      <li><a href="/semesters"> <i class="fas fa-chevron-left"></i> Semesters </a></li>
+    </ul>
+    <ul>
+      <li><a href="/semesters">Save </a></li>
+    </ul>
+  </div>
+
+  <div id="courses_container">
+    <form action="/semesters" method="POST">
+      <input type="text" placeholder="Semester Name" name="name">
+      <input type="number" placeholder="Year" name="year">
+      <input type="submit">
+    </form>
+  </div>
+</main>
+
+
+<%- include("../partials/footer.ejs") %>  
