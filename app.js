@@ -6,8 +6,9 @@ let methodOverride = require('method-override');
 let seedDB = require('./seeds');
 
 //Models
-let Course = require("./models/courses");
 let Semester = require("./models/semesters");
+let Course = require("./models/courses");
+let Grade = require("./models/grades");
 
 mongoose.connect("mongodb://localhost/gpatracker", {useNewUrlParser: true});
 app.set("view engine", "ejs");
@@ -152,6 +153,25 @@ app.post("/semesters/:id/courses", (req, res)=>{
     }
   });
 });
+
+// ====================================
+// ------ REST ROUTES FOR GRADES ------
+// ====================================
+
+// add a new grade
+let web322 = new Grade({
+  grades: [98, 76, 83, 54]
+});
+
+web322.save((err, grade)=>{
+  if(err){
+    console.log(err);
+  } else {
+    console.log("======= GRADE ======");
+    console.log(grade);
+  }
+});
+
 
 
 app.listen("3000", process.env.PORT, ()=>{
