@@ -7,16 +7,24 @@
       <li><a href="/"> Semesters </a></li>
     </ul>
     <ul>
-      <li><a  id="edit" href="#">Edit </a></li>
+      <li><a id="edit" href="#">Edit</a></li>
       <li><a class="hidden" href="/semesters">Done </a></li>
     </ul>
   </div>
+
+  <section>
+    <div class="hidden">
+      <a href="">
+        <i class="fas fa-plus-circle"></i>New Grade
+      </a>
+    </div>
+  </section>
 
   <div id="courses_container">
     <% allGrades.grades.forEach((grade)=>{ %>
       <% console.log("======= GRADE ======") %>
       <% console.log(grade) %>
-    <a href="#">
+
       <div class="card">
         <div class="hide hidden">
           <form action="" method="POST">
@@ -33,12 +41,9 @@
           <p>
             <%= grade.grade %> 
           </p>
-          
-
-            
         </div>
       </div>
-    </a>  
+
 
     <% }) %>
   </div>

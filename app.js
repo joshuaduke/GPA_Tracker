@@ -172,6 +172,18 @@ app.get("/semesters/:id/courses/:courseid/grades", (req, res)=>{
   });
 }); 
 
+// NEW ROUTE -- Display form to add new Grade
+app.get("/semesters/:id/courses/:courseid/grades/new", (req, res)=>{
+  Course.findById(req.params.id).populate("grades").exec((err, allGrades)=>{
+    if(err){
+      console.log(err);
+    } else {
+      res.render("grades/new", {grade: allGrades});
+    }
+  })
+});
+
+// CREATE ROUTE -- Add new grade to database
 
 // add a new grade
 // let web322 = new Grade({
