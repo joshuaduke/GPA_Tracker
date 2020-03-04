@@ -1,7 +1,7 @@
-let mongoose = require("mongoose");
-let Course  = require("./models/courses");
-let Semester = require("./models/semesters");
-
+let mongoose  = require("mongoose");
+let Semester  = require("./models/semesters");
+let Course    = require("./models/courses");
+let Grade     = require("./models/grades"); 
 
 //create default data for the Semester Collection
 let semesterData = [
@@ -29,11 +29,18 @@ function seedDB(){
         console.log(err);
       }
       console.log("Removed All Courses");
+
+      Grade.remove({}, (err)=>{
+        if(err){
+          console.log(err);
+        }
+        console.log("Removed All Grades");
+      })
     });
 
     //add a few semesters
     semesterData.forEach((term)=>{
-
+      //create a semester
       Semester.create(term, (err, semester)=>{
         if(err){
           console.log(err);
@@ -44,17 +51,34 @@ function seedDB(){
         Course.create({
           name: "WEB222",
           courseGrade: "95"
+
         }, (err, course)=>{
+
           if(err){
             console.log(err);
           } else {
             semester.courses.push(course);
             semester.save();
             console.log("Created a new course");
+
+            // Create a grade
+            Grade.create({
+              assignmentName: "Test1",
+              grades: [65, 74, 84]
+
+            }, (err, grade)=>{
+              if(err){
+                console.log(err);
+              } else {
+                course.grades.push(grade);
+                course.save();
+                console.log("Create a new grade");
+              }
+            });
           }
-        })
+        });
       }
-    })
+    });
     });
   });
 }

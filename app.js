@@ -159,18 +159,18 @@ app.post("/semesters/:id/courses", (req, res)=>{
 // ====================================
 
 // add a new grade
-let web322 = new Grade({
-  grades: [98, 76, 83, 54]
-});
+// let web322 = new Grade({
+//   grades: [98, 76, 83, 54]
+// });
 
-web322.save((err, grade)=>{
-  if(err){
-    console.log(err);
-  } else {
-    console.log("======= GRADE ======");
-    console.log(grade);
-  }
-});
+// web322.save((err, grade)=>{
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log("======= GRADE ======");
+//     console.log(grade);
+//   }
+// });
 
 
 
