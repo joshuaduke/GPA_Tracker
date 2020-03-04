@@ -31,7 +31,7 @@ app.get("/semesters", (req, res)=>{
       console.log("Main Route Error");
       console.log("err");
     } else {
-      res.render("semesters/semestersIndex", {semesters: allSemesters});
+      res.render("semesters/index", {semesters: allSemesters});
     }
   }).sort({year: 'desc'}).exec((err, docs)=>{
     if(err){
@@ -105,12 +105,31 @@ app.post("/semesters", (req, res)=>{
 // ====================================
 // ------ REST ROUTES FOR COURSES -----
 // ====================================
-
-// INDEX ROUTE
-
-app.get("semesters/:id/courses", (req, res)=>{
-  res.send("Create index route");
+ 
+// INDEX ROUTE -- Display all courses
+app.get("/semesters/:id/courses", (req, res)=>{
+  Semester.findById(req.params.id).populate("courses").exec((err, allCourses)=>{
+    if(err){
+      console.log(err);
+    } else {
+      console.log("===== ALL COURSES ======")
+      console.log(allCourses);
+      res.render("courses/index", {semester: allCourses});
+    }
+  });
 }); 
+
+// NEW ROUTE -- Display form to create new course
+app.get("/semesters/:id/courses/new", (req, res)=>{
+  Semester.findById(req.params.id).populate("courses").exec((err, allCourses)=>{
+  if(err){
+    console.log(err);
+  } else {
+    res.render("courses/new", {semester: allCourses});
+  }
+  });
+
+});
 
 
 app.listen("3000", process.env.PORT, ()=>{

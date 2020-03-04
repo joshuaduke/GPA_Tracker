@@ -289,3 +289,35 @@ app.get("/courses/newGrade", (req, res)=>{
   // });
   res.render("courses/newGrade")
 });
+
+
+// ======== COURSES NEW ROUTE ====== //
+<main>
+  <div class="container_nav">
+    <ul>
+      <li><a href="/"> Semesters </a></li>
+    </ul>
+    <ul>
+      <li><a href="/courses">Done </a></li>
+    </ul>
+  </div>
+
+  <div id="courses_container">
+    <a href="/courses/newCourses">
+      <i class="fas fa-plus-circle"></i>New Course
+    </a>
+
+    <% semester.courses.forEach((course)=>{ %>
+      <div class="course">
+        <p>
+          <form action="/courses/<%= course._id%>?_method=DELETE" method="POST">
+            <button><i class="fas fa-minus-circle"></i></button>
+          </form>
+          <%= course.name %> 
+        </p>
+        <p><span><%= course.courseGrade %> </span> % </p>
+      </div>
+      <hr>
+    <% }) %>
+  </div>
+</main>
