@@ -121,6 +121,7 @@ app.get("/semesters/:id/courses", (req, res)=>{
 
 // NEW ROUTE -- Display form to create new course
 app.get("/semesters/:id/courses/new", (req, res)=>{
+  console.log("===== BODY =====")
   Semester.findById(req.params.id).populate("courses").exec((err, allCourses)=>{
   if(err){
     console.log(err);
@@ -128,7 +129,28 @@ app.get("/semesters/:id/courses/new", (req, res)=>{
     res.render("courses/new", {semester: allCourses});
   }
   });
+});
 
+// CREATE ROUTE -- Add new course to the Database
+app.post("/semesters/:id/courses", (req, res)=>{
+  Semester.findById(req.params.id, (err, semester)=>{
+    if(err){
+      console.log(err);
+    } else {
+      //create new course
+      Course.create(req.body.course, (err, course)=>{
+        if(err){
+          console.log(err)
+        } else {
+          //connect course to semester
+          semester.courses.push(course);
+          semester.save();
+
+          res.redirect("/semesters/"+semester._id+"/courses");
+        }
+      });
+    }
+  });
 });
 
 
