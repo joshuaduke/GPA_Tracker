@@ -64,6 +64,7 @@ function seedDB(){
             // Create a grade
             Grade.create({
               assignmentName: "Test1",
+              weight:25,
               grade: 93
 
             }, (err, grade)=>{

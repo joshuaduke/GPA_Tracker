@@ -1,0 +1,29 @@
+<%- include("../partials/header.ejs") %> 
+
+<main>
+  <div class="container_nav">
+    <ul>
+      <li><a href="/semesters"> <i class="fas fa-chevron-left"></i> Semesters </a></li>
+    </ul>
+    <ul>
+      <li><a href="/semesters">Save </a></li>
+    </ul>
+  </div>
+
+  <div id="courses_container">
+    <form action="/semesters/<%=semester._id%>/courses/" method="POST">
+      <div>
+        <input type="text" placeholder="Grade Name" name="grade[assignmentName]">
+        <label>Item Name</label>
+      </div>
+      <div>
+        <input type="number" placeholder="Weight" name="grade[grade]">
+        <label>Weight</label>
+      </div>
+      <input type="submit">
+    </form>
+  </div>
+</main>
+
+
+<%- include("../partials/footer.ejs") %>  

@@ -4,7 +4,7 @@
 <main>
   <div class="container_nav">
     <ul>
-      <li><a href="/"> Semesters </a></li>
+      <li><a href="/"> Courses </a></li>
     </ul>
     <ul>
       <li><a id="edit" href="#">Edit</a></li>
@@ -14,14 +14,14 @@
 
   <section>
     <div class="hidden">
-      <a href="">
+      <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/index/new">
         <i class="fas fa-plus-circle"></i>New Grade
       </a>
     </div>
   </section>
 
   <div id="courses_container">
-    <% allGrades.grades.forEach((grade)=>{ %>
+    <% course.grades.forEach((grade)=>{ %>
       <% console.log("======= GRADE ======") %>
       <% console.log(grade) %>
 

@@ -160,46 +160,81 @@ app.post("/semesters/:id/courses", (req, res)=>{
 
 
 // INDEX ROUTE -- Display all Grades
-app.get("/semesters/:id/courses/:courseid/grades", (req, res)=>{
+app.get("/semesters/:id/courses/:courseid/index", (req, res)=>{
   Course.findById(req.params.courseid).populate("grades").exec((err, allGrades)=>{
     if(err){
       console.log(err);
     } else {
-      console.log("===== ALL GRADES ======");
-      console.log(allGrades)
-      res.render("grades/index", {allGrades: allGrades});
+      Semester.findById(req.params.id).populate("courses").exec((err, allCourses)=>{
+        if(err){
+          console.log(err);
+        } else {
+          res.render("grades/index", {course: allGrades, semester: allCourses});
+        }
+      });
+
+      // res.render("grades/index", {course: allGrades});
     }
   });
 }); 
 
 // NEW ROUTE -- Display form to add new Grade
-app.get("/semesters/:id/courses/:courseid/grades/new", (req, res)=>{
-  Course.findById(req.params.id).populate("grades").exec((err, allGrades)=>{
+app.get("/semesters/:id/courses/:courseid/index/new", (req, res)=>{
+  Course.findById(req.params.courseid).populate("grades").exec((err, allGrades)=>{
     if(err){
       console.log(err);
     } else {
-      res.render("grades/new", {grade: allGrades});
-    }
+      res.render("grades/new", {semester: allGrades})
+    } 
   })
 });
 
 // CREATE ROUTE -- Add new grade to database
+app.post("/semesters/:id/courses/:courseid/index", (req, res)=>{
+  Course.findById(req.params.courseid, (err, course)=>{
+    if(err){
+      console.log(err);
+    } else {
+      Grade.create(req.body.grade, (err, grade)=>{
+        if(err){
+          console.log(err);
+        } else{
+          Semester.findById(req.params.id, (err, semester)=>{
+            if(err){
+              console.log(err);
+            } else {
+              Course.grades.push(grade);
+              Course.save()
+              res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/index");
+            }
+          });
+        }
+      })
+    }
+  });  
+});
 
-// add a new grade
-// let web322 = new Grade({
-//   grades: [98, 76, 83, 54]
-// });
 
-// web322.save((err, grade)=>{
-//   if(err){
-//     console.log(err);
-//   } else {
-//     console.log("======= GRADE ======");
-//     console.log(grade);
-//   }
-// });
+app.post("/semesters/:id/courses", (req, res)=>{
+  Semester.findById(req.params.id, (err, semester)=>{
+    if(err){
+      console.log(err);
+    } else {
+      //create new course
+      Course.create(req.body.course, (err, course)=>{
+        if(err){
+          console.log(err)
+        } else {
+          //connect course to semester
+          semester.courses.push(course);
+          semester.save();
 
-
+          res.redirect("/semesters/"+semester._id+"/courses");
+        }
+      });
+    }
+  });
+});
 
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
