@@ -22,15 +22,19 @@
   <div id="courses_container">
     <% semester.courses.forEach((course)=>{ %>
 
-    <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/index">
+      <!-- Delete Button -->
+      <div class="hide hidden">
+        <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
+          <button>
+            <i class="fas fa-minus-circle"></i>
+          </button>
+        </form>
+      </div>
+
+      <!-- Card -->
+    <a class="courseInfo" href="/semesters/<%=semester._id%>/courses/<%=course._id%>/index">
       <div class="card">
-        <div class="hide hidden">
-          <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
-            <button>
-              <i class="fas fa-minus-circle"></i>
-            </button>
-          </form>
-        </div>
+        
         <div>
           <p class="course_name">
             <i class="fas fa-school"></i> 
@@ -41,6 +45,15 @@
       </div>
     </a>  
 
+      <!-- Edit a Course -->
+      <div class="hide hidden" id="courses_container">
+        <form class="hide hidden" action="/semesters/<%=semester._id%>/courses" method="POST">
+          <input type="text"  name="course[name]" value="<%= course.name%>">
+          <input type="number"  name="course[courseGrade]" value="<%= course.courseGrade%>">
+          <input type="submit">
+        </form>
+      </div>
+
       
     <% }) %>
   </div>
@@ -49,15 +62,18 @@
 <script>
   let edit = document.querySelector("#edit");
   let hidden = document.querySelectorAll(".hidden");
+  let courseInfo = document.querySelectorAll(".courseInfo");
 
   edit.addEventListener("click", ()=>{
     hidden.forEach((element)=>{
       element.classList.remove("hidden");
     })
-    // edit.innerHTML = "DONE";
+
     edit.classList.add("hidden");
-  }, ()=>{
-    alert("done");
+
+    courseInfo.forEach((course)=>{
+    course.classList.add("unclickable");
+    })
   });
 
 </script>

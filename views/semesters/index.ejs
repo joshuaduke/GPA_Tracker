@@ -35,7 +35,7 @@
       </a>
       <!-- Edit a semester -->
       <div class="hide hidden" id="courses_container">
-        <form class="hide hidden" action="/semesters/<%semester._id%>/courses" method="POST">
+        <form class="hide hidden" action="/semesters/" method="POST">
           <input type="text"  name="semester[name]" value="<%= semester.name%>">
           <input type="number"  name="semester[year]" value="<%= semester.year%>">
           <input type="submit">
@@ -43,9 +43,9 @@
       </div>
     <% }) %>
     </section>
-
 </main>
 
+<!-- JavaScript -->
 
 <script>
   let edit = document.querySelector("#edit");
