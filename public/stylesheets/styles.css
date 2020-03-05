@@ -24,6 +24,12 @@ a:hover {
   color: #8b786d;
 }
 
+.unclickable {
+  display: block;
+  pointer-events: none;
+  cursor: default;
+}
+
 header {
   width: 100%;
   height: auto;

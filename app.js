@@ -85,7 +85,7 @@ app.post("/semesters", (req, res)=>{
 
   // EDIT SEMESTER ROUTE -- Show edit form for a semester
   app.get("/semesters/:id/edit", (req , res)=>{
-    Semester.find({}, (err, allSemesters)=>{
+    Semester.findById(req.params.id, (err, allSemesters)=>{
       if(err){
         console.log(err);
       } else {
