@@ -17,6 +17,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(methodOverride("_method")); //look for _method take whatever its equal to and treat that request as a put or delete request
 seedDB();
 
+
 app.get("/", (req , res)=>{
   res.redirect("/semesters");
 });
@@ -85,6 +86,9 @@ app.post("/semesters", (req, res)=>{
 
   // EDIT SEMESTER ROUTE -- Show edit form for a semester
   app.get("/semesters/:id/edit", (req , res)=>{
+    console.log("====== BODY ======")
+    console.log((req.body.course));
+
     Semester.findById(req.params.id, (err, allSemesters)=>{
       if(err){
         console.log(err);
@@ -96,8 +100,19 @@ app.post("/semesters", (req, res)=>{
 
   // UPDATE SEMESTER ROUTE -- Update a semester then redirect PUT
   app.put("/semesters/:id/", (req , res)=>{
-
+    console.log("===== UPDATE =====");
+    console.log(req.body);
+    
+    Semester.findByIdAndUpdate(req.params.id, req.body.semester, (err, updatedSemester)=>{
+      if(err){
+        console.log(err);
+        res.redirect("/semesters");
+      } else {
+        res.redirect("/semesters/");
+      }
+    });
   }); 
+
   // DESTROY SEMESTER ROUTE -- Delete a dog then redirect
   app.delete("/semesters/:id", (req , res)=>{
 
