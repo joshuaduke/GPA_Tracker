@@ -180,38 +180,72 @@ app.get("/semesters/:id/courses/:courseid/index", (req, res)=>{
 
 // NEW ROUTE -- Display form to add new Grade
 app.get("/semesters/:id/courses/:courseid/index/new", (req, res)=>{
-  Course.findById(req.params.courseid).populate("grades").exec((err, allGrades)=>{
+  Semester.findById(req.params.id).populate("courses").exec((err, allCourses)=>{
     if(err){
       console.log(err);
     } else {
-      res.render("grades/new", {semester: allGrades})
-    } 
-  })
+
+      Course.findById(req.params.courseid).populate("grades").exec((err, allGrades)=>{
+        if(err){
+          console.log(err);
+        } else {
+          res.render("grades/new", {course: allGrades, semester: allCourses})
+        } 
+      })
+    }
+  });
+
 });
 
 // CREATE ROUTE -- Add new grade to database
 app.post("/semesters/:id/courses/:courseid/index", (req, res)=>{
-  Course.findById(req.params.courseid, (err, course)=>{
+  Semester.findById(req.params.id).populate("courses").exec((err, semester)=>{
     if(err){
       console.log(err);
     } else {
-      Grade.create(req.body.grade, (err, grade)=>{
+
+      Course.findById(req.params.courseid).populate("grades").exec((err, course)=>{
         if(err){
           console.log(err);
-        } else{
-          Semester.findById(req.params.id, (err, semester)=>{
+        } else {
+
+          Grade.create(req.body.grade, (err, grade)=>{
             if(err){
               console.log(err);
             } else {
-              Course.grades.push(grade);
-              Course.save()
+              console.log("===== COURSE ======")
+              console.log(course.grades);
+              course.grades.push(grade);
+              course.save();
               res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/index");
             }
           });
         }
       })
     }
-  });  
+  })
+
+  // Course.findById(req.params.courseid, (err, course)=>{
+  //   if(err){
+  //     console.log(err);
+  //   } else {
+  //     Grade.create(req.body.grade, (err, grade)=>{
+  //       if(err){
+  //         console.log(err);
+  //       } else{
+  //         Semester.findById(req.params.id, (err, semester)=>{
+  //           if(err){
+  //             console.log(err);
+  //           } else {
+  //             Course.grades.push(grade);
+  //             Course.save()
+  //             res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/index");
+  //           }
+  //         });
+  //       }
+  //     })
+  //   }
+  // });  
 });
 
 
