@@ -7,7 +7,7 @@
     </ul>
     <ul>
       <li><a  id="edit" href="#">Edit </a></li>
-      <li><a class="hidden" href="/semesters">Done </a></li>
+      <li><a class="hidden" href="/semesters/<%=semester._id%>/courses">Done </a></li>
     </ul>
   </div>
 
@@ -20,12 +20,8 @@
   </section>
 
   <div id="courses_container">
-    <% console.log("===== INDEX PAGE =====") %>
-    <% console.log(semester.courses) %>
     <% semester.courses.forEach((course)=>{ %>
 
-    <% console.log("========= COURSE ======="); %>  
-    <% console.log(course); %>
     <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/index">
       <div class="card">
         <div class="hide hidden">

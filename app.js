@@ -113,8 +113,6 @@ app.get("/semesters/:id/courses", (req, res)=>{
     if(err){
       console.log(err);
     } else {
-      console.log("===== ALL COURSES ======")
-      console.log(allCourses);
       res.render("courses/index", {semester: allCourses});
     }
   });
@@ -213,39 +211,15 @@ app.post("/semesters/:id/courses/:courseid/index", (req, res)=>{
             if(err){
               console.log(err);
             } else {
-              console.log("===== COURSE ======")
-              console.log(course.grades);
               course.grades.push(grade);
               course.save();
               res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/index");
             }
           });
         }
-      })
+      });
     }
-  })
-
-  // Course.findById(req.params.courseid, (err, course)=>{
-  //   if(err){
-  //     console.log(err);
-  //   } else {
-  //     Grade.create(req.body.grade, (err, grade)=>{
-  //       if(err){
-  //         console.log(err);
-  //       } else{
-  //         Semester.findById(req.params.id, (err, semester)=>{
-  //           if(err){
-  //             console.log(err);
-  //           } else {
-  //             Course.grades.push(grade);
-  //             Course.save()
-  //             res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/index");
-  //           }
-  //         });
-  //       }
-  //     })
-  //   }
-  // });  
+  });
 });
 
 
