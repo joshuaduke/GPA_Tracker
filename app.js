@@ -83,21 +83,6 @@ app.post("/semesters", (req, res)=>{
     })
   });
 
-
-  // // EDIT SEMESTER ROUTE -- Show edit form for a semester
-  // app.get("/semesters/:id/edit", (req , res)=>{
-  //   console.log("====== BODY ======")
-  //   console.log((req.body.course));
-
-  //   Semester.findById(req.params.id, (err, allSemesters)=>{
-  //     if(err){
-  //       console.log(err);
-  //     } else {
-  //       res.render("semesters/edit", {semesters: allSemesters});
-  //     }
-  //   });
-  // }); 
-
   // UPDATE SEMESTER ROUTE -- Update a semester then redirect PUT
   app.put("/semesters/:id/", (req , res)=>{
     console.log("===== UPDATE =====");
@@ -167,24 +152,6 @@ app.post("/semesters/:id/courses", (req, res)=>{
     }
   });
 });
-
-// EDIT ROUTE
-// app.get("/semesters/:id/courses/edit", (req, res)=>{
-//   Semester.findById(req.params.id, (err, allSemesters)=>{
-//     if(err){
-//       console.log(err);
-//     } else {
-      
-//       Course.findById(req.params.id, (err, allCourses)=>{
-//         if(err){
-//           console.log(err);
-//         } else {
-//           res.render("/courses/edit", {course:allCourses, semester: allSemesters});
-//         }
-//       });
-//     }
-//   });
-// });
 
 // UPDATE ROUTE
 app.put("/semesters/:id/courses/:courseid", (req, res)=>{
@@ -265,7 +232,7 @@ app.post("/semesters/:id/courses/:courseid/grades", (req, res)=>{
             } else {
               course.grades.push(grade);
               course.save();
-              res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/index");
+              res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/grades");
             }
           });
         }
@@ -297,34 +264,6 @@ app.put("/semesters/:id/courses/:courseid/grades/:gradeid", (req, res)=>{
     }
   });
 });
-
-
-
-// app.post("/semesters/:id/courses", (req, res)=>{
-//   Semester.findById(req.params.id, (err, semester)=>{
-//     if(err){
-//       console.log(err);
-//     } else {
-//       //create new course
-//       Course.create(req.body.course, (err, course)=>{
-//         if(err){
-//           console.log(err)
-//         } else {
-//           //connect course to semester
-//           semester.courses.push(course);
-//           semester.save();
-
-//           res.redirect("/semesters/"+semester._id+"/courses");
-//         }
-//       });
-//     }
-//   });
-// });
-
-//UPDATE
-// app.put("semesters/:id/courses/:courseid/index", (req, res)=>{
-  
-// });
 
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");

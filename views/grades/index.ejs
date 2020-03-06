@@ -20,6 +20,24 @@
     </div>
   </section>
 
+  </div>
+
+  <!-- Calculate Current Grade -->
+  <% let totalGrade = 0 %>
+
+  <div class="current_grade">
+    <% for(let i = 0; i < course.grades.length; i++){ %>
+      <% totalGrade += course.grades[i].grade %>
+      
+    <% } %>
+    <% totalGrade = totalGrade / course.grades.length %>
+    <p>Current Grade: <%= totalGrade %></p>
+  </div>
+
+  <div class="target_grade">
+    <p>Target Grade</p>
+  </div>
+
   <div id="courses_container">
     <% course.grades.forEach((grade)=>{ %>
       <% console.log("======= GRADE ======") %>
@@ -34,18 +52,14 @@
           </form>
         </div>
         <div>
-          <p class="course_name">
-            <i class="fas fa-school"></i> 
-            <%= grade.assignmentName %>
-          </p>
-          <p>
-            <!-- change to grade.weight -->
-            <%= grade.grade %> 
-          </p>
+          <p class="course_name"> <i class="fas fa-school"></i> <%= grade.assignmentName %></p>
         </div>
-      </div>
+        <div>
+          <p><%= grade.grade %> %</p>
+        </div>
 
-      <!-- Edit a Grade -->
+
+      <!-- === UPDATE === Edit a Grade -->
       <div class="hide hidden" id="courses_container">
         <form class="hide hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
           <input type="text"  name="grade[assignmentName]" value="<%= grade.assignmentName%>">
