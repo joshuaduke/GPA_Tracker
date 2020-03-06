@@ -8,13 +8,13 @@
     </ul>
     <ul>
       <li><a id="edit" href="#">Edit</a></li>
-      <li><a class="hidden" href="/semesters/<%=semester._id%>/courses/<%=course._id%>/index">Done </a></li>
+      <li><a class="hidden" href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades">Done </a></li>
     </ul>
   </div>
 
   <section>
     <div class="hidden">
-      <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/index/new">
+      <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/new">
         <i class="fas fa-plus-circle"></i>New Grade
       </a>
     </div>
@@ -47,10 +47,10 @@
 
       <!-- Edit a Grade -->
       <div class="hide hidden" id="courses_container">
-        <form class="hide hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/index" method="POST">
-          <input type="text"  name="grade[name]" value="<%= grade.assignmentName%>">
+        <form class="hide hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
+          <input type="text"  name="grade[assignmentName]" value="<%= grade.assignmentName%>">
           <!-- change to grade.weight -->
-          <input type="number"  name="grade[weight]" value="<%= grade.grade%>">
+          <input type="number"  name="grade[grade]" value="<%= grade.grade%>">
           <input type="submit">
         </form>
       </div>

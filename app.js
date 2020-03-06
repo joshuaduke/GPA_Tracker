@@ -212,7 +212,7 @@ app.put("/semesters/:id/courses/:courseid", (req, res)=>{
 
 
 // INDEX ROUTE -- Display all Grades
-app.get("/semesters/:id/courses/:courseid/index", (req, res)=>{
+app.get("/semesters/:id/courses/:courseid/grades", (req, res)=>{
   Course.findById(req.params.courseid).populate("grades").exec((err, allGrades)=>{
     if(err){
       console.log(err);
@@ -224,14 +224,12 @@ app.get("/semesters/:id/courses/:courseid/index", (req, res)=>{
           res.render("grades/index", {course: allGrades, semester: allCourses});
         }
       });
-
-      // res.render("grades/index", {course: allGrades});
     }
   });
 }); 
 
 // NEW ROUTE -- Display form to add new Grade
-app.get("/semesters/:id/courses/:courseid/index/new", (req, res)=>{
+app.get("/semesters/:id/courses/:courseid/grades/new", (req, res)=>{
   Semester.findById(req.params.id).populate("courses").exec((err, allCourses)=>{
     if(err){
       console.log(err);
@@ -250,7 +248,7 @@ app.get("/semesters/:id/courses/:courseid/index/new", (req, res)=>{
 });
 
 // CREATE ROUTE -- Add new grade to database
-app.post("/semesters/:id/courses/:courseid/index", (req, res)=>{
+app.post("/semesters/:id/courses/:courseid/grades", (req, res)=>{
   Semester.findById(req.params.id).populate("courses").exec((err, semester)=>{
     if(err){
       console.log(err);
@@ -268,6 +266,30 @@ app.post("/semesters/:id/courses/:courseid/index", (req, res)=>{
               course.grades.push(grade);
               course.save();
               res.redirect("/semesters/"+semester._id+"/courses/"+course._id+"/index");
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
+app.put("/semesters/:id/courses/:courseid/grades/:gradeid", (req, res)=>{
+  Semester.findById(req.params.id, (err, allSemesters)=>{
+    console.log("====== body =====")
+    console.log(req.body);
+    if(err){
+      console.log(err);
+    } else{
+      Course.findById(req.params.courseid, (err, allCourses)=>{
+        if(err){
+          console.log(err);
+        } else {
+          Grade.findByIdAndUpdate(req.params.gradeid, req.body.grade, (err, allGrades)=>{
+            if(err){
+              console.log(err);
+            } else{
+              res.redirect("/semesters/"+req.params.id+"/courses/"+req.params.courseid+"/grades");
             }
           });
         }
