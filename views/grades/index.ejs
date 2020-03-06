@@ -23,14 +23,48 @@
   </div>
 
   <!-- Calculate Current Grade -->
-  <% let totalGrade = 0 %>
+  <% let totalGrade   = 0   %>
+  <% let grade        = 0   %>
+  <% let divide       = 100 %>
+  <% let noGrade      = []  %>
+  <% let currentGrade = 100 %>
 
   <div class="current_grade">
     <% for(let i = 0; i < course.grades.length; i++){ %>
-      <% totalGrade += course.grades[i].grade %>
-      
+
+      <% if(typeof course.grades[i].grade === 'undefined'){ %>
+          <% console.log("if statement running ")%>
+          <% course.grades[i].grade == 0 %>
+
+          <% console.log("=== course.grades[i].grade ===  : IF STATEMENT") %>
+          <% console.log(course.grades[i].grade) %>
+          <% noGrade.push(course.grades[i].weight)  %>
+          <% continue;%>
+
+      <% } else { %>
+        <% totalGrade += ((course.grades[i].grade) * (course.grades[i].weight)) %>
+        <% console.log("=== course.grades[i].grade === ") %>
+        <% console.log(course.grades[i].grade) %>
+      <% } %>
+
     <% } %>
-    <% totalGrade = totalGrade / course.grades.length %>
+  <% console.log("====== NO GRADE ======") %>
+  <% console.log(noGrade) %>%>  
+
+  <% let sumDivision = noGrade.reduce((a,b)=>{ %>
+  <%    return a + b; %>
+  <% }, 0)  %>
+  <% console.log("SUMDIVISION") %>
+  <% console.log(sumDivision) %>
+
+  <% sumDivision = ((100 - sumDivision) / 100) %>
+  <% console.log("SUMDIVISION") %>
+  <% console.log(sumDivision) %>
+
+  <% totalGrade = ((totalGrade / divide) / sumDivision) %>
+  <% console.log("TOTAL GRADE") %>
+  <% console.log(totalGrade) %>
+
     <p>Current Grade: <%= totalGrade %></p>
   </div>
 
@@ -41,8 +75,6 @@
   <!-- ====== CONTAINER ====== -->
   <div id="courses_container">
     <% course.grades.forEach((grade)=>{ %>
-      <% console.log("======= GRADE ======") %>
-      <% console.log(grade) %>
 
       <div class="card">
         <div class="hide hidden">
@@ -65,7 +97,8 @@
         <form class="hide hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
           <input type="text"  name="grade[assignmentName]" value="<%= grade.assignmentName%>">
           <!-- change to grade.weight -->
-          <input type="number"  name="grade[grade]" value="<%= grade.grade%>">
+          <input id="number" type="number"  name="grade[grade]" value="<%= grade.grade%>">
+
           <input type="submit">
         </form>
       </div>
@@ -78,16 +111,20 @@
 <script>
   let edit = document.querySelector("#edit");
   let hidden = document.querySelectorAll(".hidden");
+  let number = document.querySelector("#number");
 
   edit.addEventListener("click", ()=>{
     hidden.forEach((element)=>{
       element.classList.remove("hidden");
+
     })
     // edit.innerHTML = "DONE";
     edit.classList.add("hidden");
   }, ()=>{
     alert("done");
   });
+
+
 
 </script>
 
