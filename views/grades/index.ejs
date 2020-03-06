@@ -23,11 +23,10 @@
   </div>
 
   <!-- Calculate Current Grade -->
-  <% let totalGrade   = 0   %>
+  <% let currentGrade = 0   %>
   <% let grade        = 0   %>
   <% let divide       = 100 %>
   <% let noGrade      = []  %>
-  <% let currentGrade = 100 %>
 
   <div class="current_grade">
     <% for(let i = 0; i < course.grades.length; i++){ %>
@@ -42,12 +41,13 @@
           <% continue;%>
 
       <% } else { %>
-        <% totalGrade += ((course.grades[i].grade) * (course.grades[i].weight)) %>
+        <% currentGrade += ((course.grades[i].grade) * (course.grades[i].weight)) %>
         <% console.log("=== course.grades[i].grade === ") %>
         <% console.log(course.grades[i].grade) %>
       <% } %>
 
     <% } %>
+
   <% console.log("====== NO GRADE ======") %>
   <% console.log(noGrade) %>%>  
 
@@ -61,12 +61,27 @@
   <% console.log("SUMDIVISION") %>
   <% console.log(sumDivision) %>
 
-  <% totalGrade = ((totalGrade / divide) / sumDivision) %>
+  <% currentGrade = ((currentGrade / divide) / sumDivision) %>
   <% console.log("TOTAL GRADE") %>
-  <% console.log(totalGrade) %>
+  <% console.log(currentGrade) %>
 
-    <p>Current Grade: <%= totalGrade %></p>
+    <p>Current Grade: <%= currentGrade %></p>
+
   </div>
+
+  <!-- Get currentgrade to display on COURSE INDEX ROUTE 
+    perhaps put calculations in a function and call it at the end of the loop(callback)
+    course.courseGrade.push(currentGrade);
+    course.save()
+  
+  -->
+
+  <!-- TARGET GRADE  -->
+
+  <!--
+    final grade = (grade you want - ((1 - weight of exam)) * current grade) / weight of exam
+    If current grade input field is empty, add "you need x in order to reach target grade "
+  -->
 
   <div class="target_grade">
     <p>Target Grade</p>
