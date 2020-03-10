@@ -5,6 +5,11 @@
   padding:10px 0;
 }
 
+::placeholder{
+  color:red;
+  opacity: 1;
+}
+
 *{
   margin:0;
   padding:0;
@@ -19,11 +24,13 @@ body{
 h1{
   color:$text;
   text-align:center;
+  padding:20px;
 }
 
 a{
   text-decoration:none;
 }
+
 a:hover{
   color:$brown;
 }
@@ -85,19 +92,59 @@ header{
   }
 }
 
-main, #new_course{
+main{
   width:400px;
   height:auto;
   background-color: $secondaryBkg;
-  margin:0 auto;
+  margin:50px auto;
   padding:20px;
   border-radius:15px;
   box-shadow: 1px 1px 1px #000;
 
+  #newBtn {
+    padding:10px;
+
+    text-align: center;
+    a{
+      background-color:green;
+      border-radius: 10px;
+      padding:10px 20px;
+    }
+
+  }
+
   #courses_container{
-    padding-top:20px;
+    // padding-top:20px;
+    position: relative;
+
     span{
       font-size:0.8em;
+    }
+
+    form{
+      position: absolute;
+      top:-60px;
+      left:30px;
+
+      input{
+        border:none;
+        border-bottom:1px solid #000;
+        margin-right:10px;
+        &:focus{
+          outline: none;
+        }
+      }
+
+      #submit{
+        background-color:green;
+        border-radius:5%;
+        padding:5px 10px;
+        margin-left:10px;
+        &:hover{
+          cursor:pointer;
+          background-color:steelblue;
+        }
+      }
     }
   }
 }
@@ -129,3 +176,37 @@ main, #new_course{
 .hidden{
   display:none;
 }
+
+//Edit 
+
+#delete{
+  position:relative;
+}
+
+#delete{
+
+  button{
+    border:none;
+    position: absolute;
+    top:31px;
+    left:10px;
+
+    i{
+      color:red;
+      font-size:1.3em;
+      &:hover{
+        color:blue;
+      }
+    }
+
+    &:hover{
+      cursor: pointer;
+
+    }
+  }
+
+
+
+}
+
+

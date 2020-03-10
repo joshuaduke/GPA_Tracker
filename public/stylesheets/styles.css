@@ -1,4 +1,21 @@
 /* Dark mode RGB */
+::-webkit-input-placeholder {
+  color: red;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: red;
+  opacity: 1;
+}
+::-ms-input-placeholder {
+  color: red;
+  opacity: 1;
+}
+::placeholder {
+  color: red;
+  opacity: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +31,7 @@ body {
 h1 {
   color: #ebf5ee;
   text-align: center;
+  padding: 20px;
 }
 
 a {
@@ -84,23 +102,62 @@ header ul div {
   float: right;
 }
 
-main, #new_course {
+main {
   width: 400px;
   height: auto;
   background-color: #78a1bb;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 20px;
   border-radius: 15px;
   -webkit-box-shadow: 1px 1px 1px #000;
           box-shadow: 1px 1px 1px #000;
 }
 
-main #courses_container, #new_course #courses_container {
-  padding-top: 20px;
+main #newBtn {
+  padding: 10px;
+  text-align: center;
 }
 
-main #courses_container span, #new_course #courses_container span {
+main #newBtn a {
+  background-color: green;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+main #courses_container {
+  position: relative;
+}
+
+main #courses_container span {
   font-size: 0.8em;
+}
+
+main #courses_container form {
+  position: absolute;
+  top: -60px;
+  left: 30px;
+}
+
+main #courses_container form input {
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-right: 10px;
+}
+
+main #courses_container form input:focus {
+  outline: none;
+}
+
+main #courses_container form #submit {
+  background-color: green;
+  border-radius: 5%;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+
+main #courses_container form #submit:hover {
+  cursor: pointer;
+  background-color: steelblue;
 }
 
 .card {
@@ -126,5 +183,29 @@ main #courses_container span, #new_course #courses_container span {
 
 .hidden {
   display: none;
+}
+
+#delete {
+  position: relative;
+}
+
+#delete button {
+  border: none;
+  position: absolute;
+  top: 31px;
+  left: 10px;
+}
+
+#delete button i {
+  color: red;
+  font-size: 1.3em;
+}
+
+#delete button i:hover {
+  color: blue;
+}
+
+#delete button:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.css.map */

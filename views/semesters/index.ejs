@@ -11,20 +11,24 @@
     </ul>
   </div>
 
-  <section>
-    <div class="hidden">
+  <section> 
+    <div class="hidden" id="newBtn">
       <a href="/semesters/new">
         <i class="fas fa-plus-circle"></i>New Semester
       </a>
     </div>
 
+
+    <!-- ==== EDIT =====   -->
+
     <% semesters.forEach((semester) =>{ %>
       <!-- Delete Button -->
-      <div class="hide hidden">
+      <div id="delete" class="hide hidden">
         <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
           <button><i class="fas fa-minus-circle"></i></button>
         </form>
       </div>
+
       <!-- Semester info -->
       <a class="semesterInfo" href="/semesters/<%=semester._id %>/courses">
         <div class="card">
@@ -39,11 +43,11 @@
         <form class="hide hidden" action="/semesters/<%=semester.id%>?_method=PUT" method="POST">
           <input type="text"  name="semester[name]" value="<%= semester.name%>">
           <input type="number"  name="semester[year]" value="<%= semester.year%>">
-          <input type="submit">
+          <input id="submit" type="submit">
         </form>
       </div>
     <% }) %>
-    </section>
+  </section>
 </main>
 
 <!-- JavaScript -->
