@@ -114,8 +114,8 @@ main {
 }
 
 main #newBtn {
-  padding: 10px;
   text-align: center;
+  padding: 10px 0;
 }
 
 main #newBtn a {

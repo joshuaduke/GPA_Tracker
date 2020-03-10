@@ -102,9 +102,8 @@ main{
   box-shadow: 1px 1px 1px #000;
 
   #newBtn {
-    padding:10px;
+    @include center();
 
-    text-align: center;
     a{
       background-color:green;
       border-radius: 10px;
@@ -114,7 +113,6 @@ main{
   }
 
   #courses_container{
-    // padding-top:20px;
     position: relative;
 
     span{
