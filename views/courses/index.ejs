@@ -24,7 +24,7 @@
 
       <!-- Delete Button -->
       <div class="hide hidden">
-        <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
+        <form action="/semesters/<%= semester._id%>/courses/<%=course._id%>?_method=DELETE" method="POST">
           <button>
             <i class="fas fa-minus-circle"></i>
           </button>

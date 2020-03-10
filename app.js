@@ -93,14 +93,21 @@ app.post("/semesters", (req, res)=>{
         console.log(err);
         res.redirect("/semesters");
       } else {
-        res.redirect("/semesters/");
+        res.redirect("/semesters");
       }
     });
   }); 
 
-  // DESTROY SEMESTER ROUTE -- Delete a dog then redirect
+  // DESTROY SEMESTER ROUTE -- Delete a semester then redirect
   app.delete("/semesters/:id", (req , res)=>{
-
+    Semester.findByIdAndDelete(req.params.id, req.body.semester, (err, deleteSemester)=>{
+      if(err){
+        console.log(err);
+        res.redirect("/semesters");
+      } else {
+        res.redirect("/semesters");
+      }
+    })
   }); 
 
 
@@ -173,6 +180,20 @@ app.put("/semesters/:id/courses/:courseid", (req, res)=>{
   });
 });
 
+// DESTROY COURSE ROUTE -- Delete a dog then redirect
+  app.delete("/semesters/:id/courses/:courseid", (req , res)=>{
+    Semester.findById(req.params.id , (err, deleteSemester)=>{
+      if(err){
+        console.log(err);
+        res.redirect("/semesters/"+req.params.id+"/courses");
+      } else {
+        Course.findByIdAndDelete(req.params.courseid, req.body.courses, (err, deleteCourse)=>{
+          res.redirect("/semesters/"+req.params.id+"/courses");
+        });
+      }
+    });
+  }); 
+
 // ====================================
 // ------ REST ROUTES FOR GRADES ------
 // ====================================
@@ -241,21 +262,25 @@ app.post("/semesters/:id/courses/:courseid/grades", (req, res)=>{
   });
 });
 
+// UPDATE GRADE ROUTE 
 app.put("/semesters/:id/courses/:courseid/grades/:gradeid", (req, res)=>{
   Semester.findById(req.params.id, (err, allSemesters)=>{
     console.log("====== body =====")
     console.log(req.body);
-    if(err){
+
+    if(err) {
       console.log(err);
-    } else{
+    } else {
+
       Course.findById(req.params.courseid, (err, allCourses)=>{
         if(err){
           console.log(err);
         } else {
+
           Grade.findByIdAndUpdate(req.params.gradeid, req.body.grade, (err, allGrades)=>{
             if(err){
               console.log(err);
-            } else{
+            } else {
               res.redirect("/semesters/"+req.params.id+"/courses/"+req.params.courseid+"/grades");
             }
           });
@@ -264,6 +289,29 @@ app.put("/semesters/:id/courses/:courseid/grades/:gradeid", (req, res)=>{
     }
   });
 });
+
+// DESTROY GRADE ROUTE -- Delete a GRADE then redirect
+app.delete("/semesters/:id/courses/:courseid/grades/:gradeid", (req , res)=>{
+  Semester.findById(req.params.id , (err, deleteSemester)=>{
+    if(err){
+      console.log(err);
+      res.redirect("/semesters/"+req.params.id+"/courses");
+
+    } else {
+      Course.findById(req.params.courseid, (err, deleteCourse)=>{
+
+        if(err){
+          res.redirect("/");
+
+        } else {
+          Grade.findByIdAndDelete(req.params.gradeid, req.body.grade, (err, deleteGrade)=>{
+            res.redirect("/semesters/"+req.params.id+"/courses");
+          })
+        }
+      });
+    }  
+  });
+}); 
 
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
