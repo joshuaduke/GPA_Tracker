@@ -17,20 +17,20 @@ let semesterData = [
 
 function seedDB(){
   //remove all semesters
-  Semester.remove({}, (err)=>{
+  Semester.deleteMany({}, (err)=>{
     if(err){
       console.log(err);
     }
     console.log("Removed All Semesters");
 
     //remove all courses
-    Course.remove({}, (err)=>{
+    Course.deleteMany({}, (err)=>{
       if(err){
         console.log(err);
       }
       console.log("Removed All Courses");
 
-      Grade.remove({}, (err)=>{
+      Grade.deleteMany({}, (err)=>{
         if(err){
           console.log(err);
         }

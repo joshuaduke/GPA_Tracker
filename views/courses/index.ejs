@@ -12,24 +12,24 @@
   </div>
 
   <section>
-    <div class="hidden">
+    <div class="hidden" id="newBtn">
       <a href="/semesters/<%=semester._id%>/courses/new">
         <i class="fas fa-plus-circle"></i>New Course
       </a>
     </div>
-  </section>
 
-  <div id="courses_container">
-    <% semester.courses.forEach((course)=>{ %>
 
-      <!-- Delete Button -->
-      <div class="hide hidden">
-        <form action="/semesters/<%= semester._id%>/courses/<%=course._id%>?_method=DELETE" method="POST">
-          <button>
-            <i class="fas fa-minus-circle"></i>
-          </button>
-        </form>
-      </div>
+
+  <% semester.courses.forEach((course)=>{ %>
+
+    <!-- Delete Button -->
+    <div id="delete" class="hide hidden">
+      <form action="/semesters/<%= semester._id%>/courses/<%=course._id%>?_method=DELETE" method="POST">
+        <button>
+          <i class="fas fa-minus-circle"></i>
+        </button>
+      </form>
+    </div>
 
       <!-- Card -->
     <a class="courseInfo" href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades">
@@ -48,15 +48,13 @@
       <!-- Edit a Course -->
       <div class="hide hidden" id="courses_container">
         <form class="hide hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>?_method=PUT" method="POST">
-          <input type="text"  name="course[name]" value="<%= course.name%>">
-          <input type="number"  name="course[courseGrade]" value="<%= course.courseGrade%>">
+          <input type="text"  name="course[name]" value="<%= course.name%>" autocomplete="off">
+          <input type="number"  name="course[courseGrade]" value="<%= course.courseGrade%>" autocomplete="off">
           <input type="submit">
         </form>
       </div>
-
-      
     <% }) %>
-  </div>
+  </section>    
 </main>
 
 <script>

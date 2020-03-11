@@ -11,6 +11,9 @@ let Course = require("./models/courses");
 let Grade = require("./models/grades");
 
 mongoose.connect("mongodb://localhost/gpatracker", {useNewUrlParser: true});
+
+mongoose.set('useUnifiedTopology', true);
+mongoose.set('useFindAndModify', false);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
