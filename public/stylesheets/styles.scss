@@ -27,6 +27,7 @@ h1{
   padding:20px;
 }
 
+
 a{
   text-decoration:none;
 }
@@ -143,6 +144,18 @@ main{
           background-color:steelblue;
         }
       }
+    }
+
+    #course_form{
+      position: absolute;
+      top:-85px;
+      left:30px;
+    }
+
+    #grade_form{
+      position: absolute;
+      top:-55px;
+      left:30px;
     }
   }
 }

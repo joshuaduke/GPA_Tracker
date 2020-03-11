@@ -24,7 +24,7 @@
     <% semesters.forEach((semester) =>{ %>
 
       <!-- Delete Button -->
-      <div id="delete" class="hide hidden">
+      <div id="delete" class="hidden">
         <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
           <button><i class="fas fa-minus-circle"></i></button>
         </form>
@@ -40,8 +40,9 @@
       </a>
       
       <!-- Edit a semester -->
-      <div class="hide hidden" id="courses_container">
-        <form class="hide hidden" action="/semesters/<%=semester.id%>?_method=PUT" method="POST">
+      <div class="hidden" id="courses_container">
+        <form class="hidden" action="/semesters/<%=semester.id%>?_method=PUT" method="POST">
+
           <input type="text"  name="semester[name]" value="<%= semester.name%>" autocomplete="off">
           <input type="number"  name="semester[year]" value="<%= semester.year%>" autocomplete="off">
           <input id="submit" type="submit">

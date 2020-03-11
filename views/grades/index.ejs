@@ -88,59 +88,59 @@
   </div>
 
   <!-- ====== CONTAINER ====== -->
-  <div id="courses_container">
     <% course.grades.forEach((grade)=>{ %>
 
+      <!-- Delete Button -->
+      <div id="delete" class="hidden">
+        <form action="/semesters/<%= semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=DELETE" method="POST">
+          <button>
+            <i class="fas fa-minus-circle"></i>
+          </button>
+        </form>
+      </div>
+
       <div class="card">
-        <div class="hide hidden">
-          <form action="/semesters/<%= semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=DELETE" method="POST">
-            <button>
-              <i class="fas fa-minus-circle"></i>
-            </button>
-          </form>
-        </div>
         <div>
           <p class="course_name"> <i class="fas fa-school"></i> <%= grade.assignmentName %></p>
         </div>
         <div>
-          <p><%= grade.grade %> %</p>
+          <p id="grade"><%= grade.grade %> %</p>
         </div>
 
 
       <!-- === UPDATE === Edit a Grade -->
 
-      <div class="hide hidden" id="courses_container">
-        <form class="hide hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
+      <div class="hidden" id="courses_container">
+        <form id="grade_form" class="hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
           <input type="text"  name="grade[assignmentName]" value="<%= grade.assignmentName%>" autocomplete="off">
           <!-- change to grade.weight -->
           <input id="number" type="number"  name="grade[grade]" value="<%= grade.grade%>" autocomplete="off">
 
-          <input type="submit">
+          <input id="submit" type="submit">
         </form>
       </div>
 
 
     <% }) %>
-  </div>
 </main>
 
 <script>
   let edit = document.querySelector("#edit");
   let hidden = document.querySelectorAll(".hidden");
   let number = document.querySelector("#number");
+  let grade = document.querySelector("#grade");
 
   edit.addEventListener("click", ()=>{
     hidden.forEach((element)=>{
       element.classList.remove("hidden");
 
     })
-    // edit.innerHTML = "DONE";
+
     edit.classList.add("hidden");
+    grade.classList.add("hidden");
   }, ()=>{
     alert("done");
   });
-
-
 
 </script>
 

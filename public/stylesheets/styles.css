@@ -160,6 +160,18 @@ main #courses_container form #submit:hover {
   background-color: steelblue;
 }
 
+main #courses_container #course_form {
+  position: absolute;
+  top: -85px;
+  left: 30px;
+}
+
+main #courses_container #grade_form {
+  position: absolute;
+  top: -55px;
+  left: 30px;
+}
+
 .card {
   display: block;
   width: 100%;
