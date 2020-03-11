@@ -10,7 +10,7 @@
 }
 
 @mixin textHeader(){
-  font-family:$textHeader;
+  font-family:$textHeader ;
   text-transform: uppercase;
   font-size:0.9em;
   letter-spacing:1px;
@@ -59,15 +59,15 @@ a:hover{
 header{
   width:100%;
   height:auto;
-  padding:20px;
-  background:$secondaryBkg;
   @include textHeader();
 
   nav{
-    width:100%;
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
+    padding:20px;
+    background:$secondaryBkg;
+    width:100%;
   }
 
   ul{
@@ -92,30 +92,7 @@ header{
   }
 }
 
-.container_nav{
-  padding:10px 0;
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
 
-  ul{
-    list-style-type: none;
-    padding:0 30px;
-    li{
-      display: inline;
-      text-transform: uppercase;
-    }
-  }
-
-  ul:nth-of-type(2){
-    text-align: center;
-  }
-
-  ul:nth-of-type(3){
-    li{
-      float:right;
-    }
-  }
-}
 
 // == All Models == 
 
@@ -128,6 +105,32 @@ main{
   border-radius:15px;
   box-shadow: 1px 1px 1px #000;
 
+  .container_nav{
+    @include textHeader();
+    padding:10px 0;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  
+    ul{
+      list-style-type: none;
+      padding:0 30px;
+      li{
+        display: inline;
+        text-transform: uppercase;
+      }
+    }
+  
+    ul:nth-of-type(2){
+      text-align: center;
+    }
+  
+    ul:nth-of-type(3){
+      li{
+        float:right;
+      }
+    }
+  }
+
   #newBtn {
     @include center();
 
@@ -136,7 +139,15 @@ main{
       border-radius: 10px;
       padding:10px 20px;
     }
+  }
 
+  .card_container{
+    padding-top:20px;
+  }
+
+  .info{
+    font-family: $textBody;
+    font-weight:bold;
   }
 
   #courses_container{
@@ -148,7 +159,7 @@ main{
 
     form{
       position: absolute;
-      top:-60px;
+      top:-45px;
       left:30px;
 
       input{
@@ -249,6 +260,7 @@ main{
 // == Grades models == 
 
 #grade_display{
+  @include textHeader();
   padding:20px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;

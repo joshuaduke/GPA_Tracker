@@ -14,7 +14,7 @@
     </ul>
   </div>
 
-  <section> 
+
     <div class="hidden" id="newBtn">
       <a href="/semesters/new">
         <i class="fas fa-plus-circle"></i>New Semester
@@ -23,9 +23,9 @@
 
 
     <!-- ==== EDIT =====   -->
-
+  <section class="card_container">
     <% semesters.forEach((semester) =>{ %>
-
+      
       <!-- Delete Button -->
       <div id="delete" class="hidden">
         <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
@@ -34,10 +34,10 @@
       </div>
 
       <!-- Semester info -->
-      <a class="semesterInfo" href="/semesters/<%=semester._id %>/courses">
+      <a class="info semesterInfo" href="/semesters/<%=semester._id %>/courses">
         <div class="card">
           <div>
-            <p ><%= semester.name%> <%= semester.year %>  </p>
+            <p id="semesterContent"> <%= semester.name%> <%= semester.year %>  </p>
           </div>
         </div>
       </a>
@@ -61,6 +61,8 @@
   let edit = document.querySelector("#edit");
   let hidden = document.querySelectorAll(".hidden");
   let semesterInfo = document.querySelectorAll(".semesterInfo");
+  let semesterContent = document.querySelector("#semesterContent");
+  let card = document.querySelector(".card");
 
   edit.addEventListener("click", ()=>{
     hidden.forEach((element)=>{
@@ -71,7 +73,10 @@
 
     semesterInfo.forEach((semester)=>{
     semester.classList.add("unclickable");
-    })
+    });
+
+    semesterContent.classList.add("hidden");
+    card.style.height = "24px"
   });
 
 </script>

@@ -52,8 +52,6 @@ a:hover {
 header {
   width: 100%;
   height: auto;
-  padding: 20px;
-  background: #78a1bb;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   font-size: 0.9em;
@@ -61,7 +59,6 @@ header {
 }
 
 header nav {
-  width: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -69,6 +66,9 @@ header nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 20px;
+  background: #78a1bb;
+  width: 100%;
 }
 
 header ul {
@@ -89,32 +89,6 @@ header ul:nth-of-type(3) li {
   float: right;
 }
 
-.container_nav {
-  padding: 10px 0;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
-}
-
-.container_nav ul {
-  list-style-type: none;
-  padding: 0 30px;
-}
-
-.container_nav ul li {
-  display: inline;
-  text-transform: uppercase;
-}
-
-.container_nav ul:nth-of-type(2) {
-  text-align: center;
-}
-
-.container_nav ul:nth-of-type(3) li {
-  float: right;
-}
-
 main {
   width: 400px;
   height: auto;
@@ -123,6 +97,36 @@ main {
   border-radius: 15px;
   -webkit-box-shadow: 1px 1px 1px #000;
           box-shadow: 1px 1px 1px #000;
+}
+
+main .container_nav {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  padding: 10px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
+main .container_nav ul {
+  list-style-type: none;
+  padding: 0 30px;
+}
+
+main .container_nav ul li {
+  display: inline;
+  text-transform: uppercase;
+}
+
+main .container_nav ul:nth-of-type(2) {
+  text-align: center;
+}
+
+main .container_nav ul:nth-of-type(3) li {
+  float: right;
 }
 
 main #newBtn {
@@ -136,6 +140,15 @@ main #newBtn a {
   padding: 10px 20px;
 }
 
+main .card_container {
+  padding-top: 20px;
+}
+
+main .info {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
 main #courses_container {
   position: relative;
 }
@@ -146,7 +159,7 @@ main #courses_container span {
 
 main #courses_container form {
   position: absolute;
-  top: -60px;
+  top: -45px;
   left: 30px;
 }
 
@@ -240,6 +253,10 @@ main #courses_container #grade_form {
 }
 
 #grade_display {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1px;
   padding: 20px 30px;
   display: -ms-grid;
   display: grid;
