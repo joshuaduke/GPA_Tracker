@@ -168,7 +168,7 @@ main #courses_container #course_form {
 
 main #courses_container #grade_form {
   position: absolute;
-  top: -55px;
+  top: -30px;
   left: 30px;
 }
 
@@ -219,5 +219,21 @@ main #courses_container #grade_form {
 
 #delete button:hover {
   cursor: pointer;
+}
+
+#grade_display {
+  padding-top: 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+
+#grade_display span {
+  display: inline-block;
+  color: pink;
+  font-size: 2em;
+  padding: 5px;
 }
 /*# sourceMappingURL=styles.css.map */

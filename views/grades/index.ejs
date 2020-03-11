@@ -8,18 +8,9 @@
     </ul>
     <ul>
       <li><a id="edit" href="#">Edit</a></li>
+      <li> <%= course.name %></li>
       <li><a class="hidden" href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades">Done </a></li>
     </ul>
-  </div>
-
-  <section>
-    <div class="hidden">
-      <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/new">
-        <i class="fas fa-plus-circle"></i>New Grade
-      </a>
-    </div>
-  </section>
-
   </div>
 
   <!-- Calculate Current Grade -->
@@ -28,46 +19,57 @@
   <% let divide       = 100 %>
   <% let noGrade      = []  %>
 
-  <div class="current_grade">
-    <% for(let i = 0; i < course.grades.length; i++){ %>
-
-      <% if(typeof course.grades[i].grade === 'undefined'){ %>
-          <% console.log("if statement running ")%>
-          <% course.grades[i].grade == 0 %>
-
-          <% console.log("=== course.grades[i].grade ===  : IF STATEMENT") %>
+  <section id="grade_display">
+    <div class="current_grade">
+      <% for(let i = 0; i < course.grades.length; i++){ %>
+  
+        <% if(typeof course.grades[i].grade === 'undefined'){ %>
+            <% console.log("if statement running ")%>
+            <% course.grades[i].grade == 0 %>
+  
+            <% console.log("=== course.grades[i].grade ===  : IF STATEMENT") %>
+            <% console.log(course.grades[i].grade) %>
+            <% noGrade.push(course.grades[i].weight)  %>
+            <% continue;%>
+  
+        <% } else { %>
+          <% currentGrade += ((course.grades[i].grade) * (course.grades[i].weight)) %>
+          <% console.log("=== course.grades[i].grade === ") %>
           <% console.log(course.grades[i].grade) %>
-          <% noGrade.push(course.grades[i].weight)  %>
-          <% continue;%>
-
-      <% } else { %>
-        <% currentGrade += ((course.grades[i].grade) * (course.grades[i].weight)) %>
-        <% console.log("=== course.grades[i].grade === ") %>
-        <% console.log(course.grades[i].grade) %>
+        <% } %>
+  
       <% } %>
+  
+    <% console.log("====== NO GRADE ======") %>
+    <% console.log(noGrade) %>%>  
+  
+    <% let sumDivision = noGrade.reduce((a,b)=>{ %>
+    <%    return a + b; %>
+    <% }, 0)  %>
+    <% console.log("SUMDIVISION") %>
+    <% console.log(sumDivision) %>
+  
+    <% sumDivision = ((100 - sumDivision) / 100) %>
+    <% console.log("SUMDIVISION") %>
+    <% console.log(sumDivision) %>
+  
+    <% currentGrade = ((currentGrade / divide) / sumDivision) %>
+    <% console.log("TOTAL GRADE") %>
+    <% console.log(currentGrade) %>
 
-    <% } %>
+      <p>Current Grade <br /> 
+        <span> <%= currentGrade %>  </span> %
+      </p>
+  
+  
+    </div>
+    <div class="target_grade">
+      <p>Target Grade <br /> 
 
-  <% console.log("====== NO GRADE ======") %>
-  <% console.log(noGrade) %>%>  
+      </p>
+    </div>
+  </section>
 
-  <% let sumDivision = noGrade.reduce((a,b)=>{ %>
-  <%    return a + b; %>
-  <% }, 0)  %>
-  <% console.log("SUMDIVISION") %>
-  <% console.log(sumDivision) %>
-
-  <% sumDivision = ((100 - sumDivision) / 100) %>
-  <% console.log("SUMDIVISION") %>
-  <% console.log(sumDivision) %>
-
-  <% currentGrade = ((currentGrade / divide) / sumDivision) %>
-  <% console.log("TOTAL GRADE") %>
-  <% console.log(currentGrade) %>
-
-    <p>Current Grade: <%= currentGrade %></p>
-
-  </div>
 
   <!-- Get currentgrade to display on COURSE INDEX ROUTE 
     perhaps put calculations in a function and call it at the end of the loop(callback)
@@ -83,9 +85,15 @@
     If current grade input field is empty, add "you need x in order to reach target grade "
   -->
 
-  <div class="target_grade">
-    <p>Target Grade</p>
-  </div>
+
+
+  <section>
+    <div class="hidden" id="newBtn">
+      <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/new">
+        <i class="fas fa-plus-circle"></i>New Grade
+      </a>
+    </div>
+  </section>
 
   <!-- ====== CONTAINER ====== -->
     <% course.grades.forEach((grade)=>{ %>
