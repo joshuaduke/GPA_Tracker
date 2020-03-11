@@ -7,8 +7,11 @@
       <li><a href="/semesters/<%=semester._id%>/courses"> Courses </a></li>
     </ul>
     <ul>
-      <li><a id="edit" href="#">Edit</a></li>
       <li> <%= course.name %></li>
+    </ul>
+    <ul>
+      <li><a id="edit" href="#">Edit</a></li>
+
       <li><a class="hidden" href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades">Done </a></li>
     </ul>
   </div>
@@ -85,8 +88,6 @@
     If current grade input field is empty, add "you need x in order to reach target grade "
   -->
 
-
-
   <section>
     <div class="hidden" id="newBtn">
       <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/new">
@@ -114,7 +115,7 @@
         <div>
           <p id="grade"><%= grade.grade %> %</p>
         </div>
-
+      </div>  
 
       <!-- === UPDATE === Edit a Grade -->
 

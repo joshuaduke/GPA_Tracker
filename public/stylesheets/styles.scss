@@ -9,6 +9,13 @@
   padding:10px 0;
 }
 
+@mixin textHeader(){
+  font-family:$textHeader;
+  text-transform: uppercase;
+  font-size:0.9em;
+  letter-spacing:1px;
+}
+
 ::placeholder{
   color:red;
   opacity: 1;
@@ -54,11 +61,12 @@ header{
   height:auto;
   padding:20px;
   background:$secondaryBkg;
+  @include textHeader();
 
   nav{
     width:100%;
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
   }
 
@@ -71,27 +79,38 @@ header{
       margin:0 10px;
       // text-transform: uppercase;
     }
-    div{
+  }
+
+  ul:nth-of-type(2){
+    text-align: center;
+  }
+
+  ul:nth-of-type(3){
+    li{
       float:right;
     }
   }
 }
 
 .container_nav{
+  padding:10px 0;
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 
   ul{
     list-style-type: none;
-
+    padding:0 30px;
     li{
       display: inline;
-      margin:0 20px;
       text-transform: uppercase;
     }
   }
 
   ul:nth-of-type(2){
+    text-align: center;
+  }
+
+  ul:nth-of-type(3){
     li{
       float:right;
     }
@@ -105,7 +124,7 @@ main{
   height:auto;
   background-color: $secondaryBkg;
   margin:50px auto;
-  padding:20px;
+  // padding:20px;
   border-radius:15px;
   box-shadow: 1px 1px 1px #000;
 
@@ -173,8 +192,14 @@ main{
   height:auto;
   background-color:#fff;
   padding:20px 0;
-  border-radius:15px;
-  margin:10px auto;
+  margin:0 auto;
+  text-transform:uppercase;
+  letter-spacing: 1px;
+  border-bottom:1px solid #000;
+
+  i{
+    color:$secondaryText;
+  }
 
   p{
     padding-left:30px;
@@ -224,16 +249,26 @@ main{
 // == Grades models == 
 
 #grade_display{
-  padding-top:20px;
+  padding:20px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
 
+  .current_grade p{
+    float:left;
+  }
+
+  .target_grade p{
+    float:right;
+  }
+
   span{
     display: inline-block;
-    color:pink;
+    color:$text;
     font-size:2em;
     padding:5px;
   }
+
+
 }
 

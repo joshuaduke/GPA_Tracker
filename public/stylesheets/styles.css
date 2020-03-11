@@ -54,14 +54,18 @@ header {
   height: auto;
   padding: 20px;
   background: #78a1bb;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1px;
 }
 
 header nav {
   width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -77,28 +81,37 @@ header ul li {
   margin: 0 10px;
 }
 
-header ul div {
+header ul:nth-of-type(2) {
+  text-align: center;
+}
+
+header ul:nth-of-type(3) li {
   float: right;
 }
 
 .container_nav {
+  padding: 10px 0;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
 }
 
 .container_nav ul {
   list-style-type: none;
+  padding: 0 30px;
 }
 
 .container_nav ul li {
   display: inline;
-  margin: 0 20px;
   text-transform: uppercase;
 }
 
-.container_nav ul:nth-of-type(2) li {
+.container_nav ul:nth-of-type(2) {
+  text-align: center;
+}
+
+.container_nav ul:nth-of-type(3) li {
   float: right;
 }
 
@@ -107,7 +120,6 @@ main {
   height: auto;
   background-color: #78a1bb;
   margin: 50px auto;
-  padding: 20px;
   border-radius: 15px;
   -webkit-box-shadow: 1px 1px 1px #000;
           box-shadow: 1px 1px 1px #000;
@@ -178,8 +190,14 @@ main #courses_container #grade_form {
   height: auto;
   background-color: #fff;
   padding: 20px 0;
-  border-radius: 15px;
-  margin: 10px auto;
+  margin: 0 auto;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #000;
+}
+
+.card i {
+  color: #bfa89e;
 }
 
 .card p {
@@ -222,7 +240,7 @@ main #courses_container #grade_form {
 }
 
 #grade_display {
-  padding-top: 20px;
+  padding: 20px 30px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
@@ -230,9 +248,17 @@ main #courses_container #grade_form {
   text-align: center;
 }
 
+#grade_display .current_grade p {
+  float: left;
+}
+
+#grade_display .target_grade p {
+  float: right;
+}
+
 #grade_display span {
   display: inline-block;
-  color: pink;
+  color: #ebf5ee;
   font-size: 2em;
   padding: 5px;
 }
