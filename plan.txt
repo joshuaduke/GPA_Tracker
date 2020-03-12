@@ -43,3 +43,11 @@ table 1 {
   3.1. User Name
   3.2. School Grading Scale (York & Seneca)
   3.3. Theme
+
+
+        <!-- Delete Button -->
+      <div id="delete" class="hidden">
+        <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
+          <button><i class="fas fa-minus-circle"></i></button>
+        </form>
+      </div>

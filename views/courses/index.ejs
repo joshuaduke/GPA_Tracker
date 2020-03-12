@@ -21,8 +21,6 @@
       </a>
     </div>
 
-
-
   <% semester.courses.forEach((course)=>{ %>
 
     <!-- Delete Button -->
@@ -47,7 +45,7 @@
 
       <!-- Edit a Course -->
       <div class="hidden" id="courses_container">
-        <form id="course_form" class="hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>?_method=PUT" method="POST">
+        <form id="main_form" class="hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>?_method=PUT" method="POST">
 
           <input type="text"  name="course[name]" value="<%= course.name%>" autocomplete="off">
           <input type="number"  name="course[courseGrade]" value="<%= course.courseGrade%>" autocomplete="off">
@@ -62,10 +60,15 @@
   let edit = document.querySelector("#edit");
   let hidden = document.querySelectorAll(".hidden");
   let courseInfo = document.querySelectorAll(".courseInfo");
+  let card = document.querySelectorAll(".card");
 
   edit.addEventListener("click", ()=>{
     hidden.forEach((element)=>{
       element.classList.remove("hidden");
+    })
+
+    card.forEach((card)=>{
+      card.classList.add("hidden");
     })
 
     edit.classList.add("hidden");

@@ -118,7 +118,7 @@
       <!-- === UPDATE === Edit a Grade -->
 
       <div class="hidden" id="courses_container">
-        <form id="grade_form" class="hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
+        <form id="main_form" class="hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
           <input type="text"  name="grade[assignmentName]" value="<%= grade.assignmentName%>" autocomplete="off">
           <!-- change to grade.weight -->
           <input id="number" type="number"  name="grade[grade]" value="<%= grade.grade%>" autocomplete="off">

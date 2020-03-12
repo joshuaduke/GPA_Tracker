@@ -11,7 +11,7 @@
   </div>
 
   <div id="courses_container">
-    <form action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades" method="POST">
+    <form id="main_form" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades" method="POST">
       <div>
         <input type="text" placeholder="Grade Name" name="grade[assignmentName]">
         <label>Item Name</label>

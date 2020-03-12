@@ -1,4 +1,6 @@
 /* Dark mode RGB */
+/* HSL */
+/* RGB */
 ::-webkit-input-placeholder {
   color: red;
   opacity: 1;
@@ -21,11 +23,18 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  line-height: 1.5rem;
+}
+
+html {
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
 }
 
 body {
-  background-color: #283044;
+  background-color: #fdffff;
 }
 
 h1 {
@@ -36,17 +45,20 @@ h1 {
 
 a {
   text-decoration: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #fdffff;
 }
 
 a:hover {
-  color: #8b786d;
+  color: #de7c5a;
 }
 
 .unclickable {
   display: block;
   pointer-events: none;
   cursor: default;
-  color: #000;
+  color: #444;
 }
 
 header {
@@ -67,7 +79,7 @@ header nav {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 20px 65px;
-  background: #78a1bb;
+  background: #570000;
   width: 100%;
 }
 
@@ -95,8 +107,8 @@ main {
   background-color: #78a1bb;
   margin: 50px auto;
   border-radius: 15px;
-  -webkit-box-shadow: 1px 1px 1px #000;
-          box-shadow: 1px 1px 1px #000;
+  -webkit-box-shadow: 1px 1px 1px #444;
+          box-shadow: 1px 1px 1px #444;
 }
 
 main .container_nav {
@@ -157,7 +169,7 @@ main #courses_container span {
   font-size: 0.8em;
 }
 
-main #courses_container form {
+main #courses_container #main_form {
   width: 100%;
   background-color: #fff;
   padding: 20px 25px;
@@ -168,7 +180,7 @@ main #courses_container form {
   border-bottom: 1px solid #e4e4e4;
 }
 
-main #courses_container form input {
+main #courses_container #main_form input {
   border: none;
   background-color: transparent;
   border-bottom: 1px solid #666;
@@ -178,27 +190,21 @@ main #courses_container form input {
   color: #e4e4e4;
 }
 
-main #courses_container form input:focus {
+main #courses_container #main_form input:focus {
   outline: none;
-  color: #000;
+  color: #444;
 }
 
-main #courses_container form #submit {
+main #courses_container #main_form #submit {
   background-color: green;
   border-radius: 5%;
   padding: 5px 10px;
   margin-left: 5px;
 }
 
-main #courses_container form #submit:hover {
+main #courses_container #main_form #submit:hover {
   cursor: pointer;
   background-color: steelblue;
-}
-
-main #courses_container #course_form {
-  position: absolute;
-  top: -85px;
-  left: 30px;
 }
 
 main #courses_container #grade_form {
@@ -216,7 +222,7 @@ main #courses_container #grade_form {
   margin: 0 auto;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #444;
 }
 
 .card i {
