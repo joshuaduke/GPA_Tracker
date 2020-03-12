@@ -144,6 +144,7 @@ main{
 
   #newBtn {
     @include center();
+    padding:20px 0;
 
     a{
       background-color:$accent;
