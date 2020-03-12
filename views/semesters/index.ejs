@@ -37,17 +37,20 @@
       <a class="info semesterInfo" href="/semesters/<%=semester._id %>/courses">
         <div class="card">
           <div>
-            <p id="semesterContent"> <%= semester.name%> <%= semester.year %>  </p>
+            <p class="semesterContent"> <%= semester.name%> <%= semester.year %>  </p>
           </div>
         </div>
       </a>
       
       <!-- Edit a semester -->
       <div class="hidden" id="courses_container">
+
         <form class="hidden" action="/semesters/<%=semester.id%>?_method=PUT" method="POST">
 
           <input type="text"  name="semester[name]" value="<%= semester.name%>" autocomplete="off">
+
           <input type="number"  name="semester[year]" value="<%= semester.year%>" autocomplete="off">
+
           <input id="submit" type="submit">
         </form>
       </div>
@@ -61,22 +64,28 @@
   let edit = document.querySelector("#edit");
   let hidden = document.querySelectorAll(".hidden");
   let semesterInfo = document.querySelectorAll(".semesterInfo");
-  let semesterContent = document.querySelector("#semesterContent");
-  let card = document.querySelector(".card");
+  let semesterContent = document.querySelectorAll(".semesterContent");
+  let card = document.querySelectorAll(".card");
 
   edit.addEventListener("click", ()=>{
     hidden.forEach((element)=>{
       element.classList.remove("hidden");
     });
 
+    card.forEach((card)=>{
+      card.classList.add("hidden");
+    })
+
     edit.classList.add("hidden");
 
-    semesterInfo.forEach((semester)=>{
-    semester.classList.add("unclickable");
-    });
+    // semesterInfo.forEach((semester)=>{
+    // semester.classList.add("unclickable");
+    // });
 
-    semesterContent.classList.add("hidden");
-    card.style.height = "24px"
+    semesterContent.forEach((content)=>{
+      content.classList.add("hidden");
+      // card.style.padding = "35px";
+    })
   });
 
 </script>
