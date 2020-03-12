@@ -3,7 +3,10 @@
 <main>
   <div class="container_nav">
     <ul>
-      <li><a href="/semesters"> <i class="fas fa-chevron-left"></i> Semesters </a></li>
+      <li><a href="/semesters">Semesters </a></li>
+    </ul>
+    <ul>
+      <li>COURSES</li>
     </ul>
     <ul>
       <li><a href="/semesters">Save </a></li>
@@ -13,7 +16,7 @@
   <div id="courses_container">
     <form id="main_form" action="/semesters/<%=semester._id%>/courses" method="POST">
       <input type="text" placeholder="Course Name" name="course[name]">
-      <input type="submit">
+      <input id="submit" type="submit">
     </form>
   </div>
 </main>
