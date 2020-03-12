@@ -2,19 +2,19 @@
 /* HSL */
 /* RGB */
 ::-webkit-input-placeholder {
-  color: red;
+  color: #444;
   opacity: 1;
 }
 :-ms-input-placeholder {
-  color: red;
+  color: #444;
   opacity: 1;
 }
 ::-ms-input-placeholder {
-  color: red;
+  color: #444;
   opacity: 1;
 }
 ::placeholder {
-  color: red;
+  color: #444;
   opacity: 1;
 }
 
@@ -34,7 +34,7 @@ h1, h2, h3, h4 {
 }
 
 body {
-  background-color: #fdffff;
+  background-color: #cecccc;
 }
 
 h1 {
@@ -48,6 +48,14 @@ a {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   color: #fdffff;
+}
+
+li {
+  color: #cecccc;
+}
+
+p {
+  color: #666;
 }
 
 a:hover {
@@ -104,9 +112,9 @@ header ul:nth-of-type(3) li {
 main {
   width: 400px;
   height: auto;
-  background-color: #78a1bb;
+  background-color: #b10f2e;
   margin: 50px auto;
-  border-radius: 15px;
+  border-radius: 5px 5px 0 0;
   -webkit-box-shadow: 1px 1px 1px #444;
           box-shadow: 1px 1px 1px #444;
 }
@@ -117,6 +125,7 @@ main .container_nav {
   font-size: 0.9em;
   letter-spacing: 1px;
   padding: 10px 0;
+  background-color: #570000;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
@@ -147,8 +156,8 @@ main #newBtn {
 }
 
 main #newBtn a {
-  background-color: green;
-  border-radius: 10px;
+  background-color: #de7c5a;
+  border-radius: 5px;
   padding: 10px 20px;
 }
 
@@ -187,7 +196,7 @@ main #courses_container #main_form input {
   margin-right: 10px;
   font-size: 13px;
   padding: 5px;
-  color: #e4e4e4;
+  color: #999;
 }
 
 main #courses_container #main_form input:focus {
@@ -196,15 +205,18 @@ main #courses_container #main_form input:focus {
 }
 
 main #courses_container #main_form #submit {
-  background-color: green;
-  border-radius: 5%;
+  background-color: #de7c5a;
+  color: #fdffff;
+  border-radius: 5px;
   padding: 5px 10px;
   margin-left: 5px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 main #courses_container #main_form #submit:hover {
   cursor: pointer;
-  background-color: steelblue;
+  background-color: #570000;
 }
 
 main #courses_container #grade_form {
@@ -226,7 +238,7 @@ main #courses_container #grade_form {
 }
 
 .card i {
-  color: #bfa89e;
+  color: #de7c5a;
 }
 
 .card p {
@@ -256,12 +268,12 @@ main #courses_container #grade_form {
 }
 
 #delete button i {
-  color: red;
+  color: #b10f2e;
   font-size: 1.3em;
 }
 
 #delete button i:hover {
-  color: blue;
+  color: #de7c5a;
 }
 
 #delete button:hover {
@@ -281,18 +293,26 @@ main #courses_container #grade_form {
   text-align: center;
 }
 
-#grade_display .current_grade p {
-  float: left;
-}
-
-#grade_display .target_grade p {
-  float: right;
-}
-
-#grade_display span {
+#grade_display span:nth-of-type(1) {
   display: inline-block;
   color: #ebf5ee;
   font-size: 2em;
   padding: 5px;
+}
+
+#grade_display .current_grade p, #grade_display .target_grade p {
+  color: #cecccc;
+}
+
+#grade_display .current_grade p {
+  float: left;
+}
+
+#grade_display .current_grade p span {
+  color: #fdffff;
+}
+
+#grade_display .target_grade p {
+  float: right;
 }
 /*# sourceMappingURL=styles.css.map */
