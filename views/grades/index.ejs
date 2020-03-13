@@ -1,6 +1,5 @@
 <%- include("../partials/header.ejs") %> 
 
-
 <main>
   <div class="container_nav">
     <ul>
@@ -86,62 +85,67 @@
     If current grade input field is empty, add "you need x in order to reach target grade "
   -->
 
-  <section>
+  <!-- ====== EDIT ====== -->
     <div class="hidden" id="newBtn">
       <a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/new">
         <i class="fas fa-plus-circle"></i>New Grade
       </a>
     </div>
-  </section>
 
-  <!-- ====== CONTAINER ====== -->
-    <% course.grades.forEach((grade)=>{ %>
+    <section class="card_container">
+      <% course.grades.forEach((grade)=>{ %>
 
-      <!-- Delete Button -->
-      <div id="delete" class="hidden">
-        <form action="/semesters/<%= semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=DELETE" method="POST">
-          <button>
-            <i class="fas fa-minus-circle"></i>
-          </button>
-        </form>
-      </div>
+        <!-- Grade Info-->
+        <div class="card">
+          <div class="info gradeInfo">
+            <p class="course_name"> <i class="fas fa-school fa-lg"></i> <%= grade.assignmentName %></p>
+          </div>
+          <div>
+            <p id="grade"><%= grade.grade %> %</p>
+          </div>
+        </div>  
+  
+        <!-- Edit a Grade -->
+        <div class="hidden" id="courses_container">
+          <!-- Delete Button -->
+          <div id="delete" class="hidden">
+            <form action="/semesters/<%= semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=DELETE" method="POST">
+              <button>
+                <i class="fas fa-minus-circle"></i>
+              </button>
+            </form>
+          </div>
 
-      <div class="card">
-        <div class="info">
-          <p class="course_name"> <i class="fas fa-school fa-lg"></i> <%= grade.assignmentName %></p>
+          <form id="main_form" class="hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
+            <input type="text"  name="grade[assignmentName]" value="<%= grade.assignmentName%>" autocomplete="off">
+            <!-- change to grade.weight -->
+            <input id="number" type="number"  name="grade[grade]" value="<%= grade.grade%>" autocomplete="off">
+  
+            <input id="submit" type="submit">
+          </form>
         </div>
-        <div>
-          <p id="grade"><%= grade.grade %> %</p>
-        </div>
-      </div>  
-
-      <!-- === UPDATE === Edit a Grade -->
-
-      <div class="hidden" id="courses_container">
-        <form id="main_form" class="hidden" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades/<%=grade._id%>?_method=PUT" method="POST">
-          <input type="text"  name="grade[assignmentName]" value="<%= grade.assignmentName%>" autocomplete="off">
-          <!-- change to grade.weight -->
-          <input id="number" type="number"  name="grade[grade]" value="<%= grade.grade%>" autocomplete="off">
-
-          <input id="submit" type="submit">
-        </form>
-      </div>
-
-
-    <% }) %>
+      <% }) %>
+    </section>
 </main>
+
+<!-- JavaScript -->
 
 <script>
   let edit = document.querySelector("#edit");
   let hidden = document.querySelectorAll(".hidden");
   let number = document.querySelector("#number");
   let grade = document.querySelector("#grade");
+  let card = document.querySelectorAll(".card");
 
   edit.addEventListener("click", ()=>{
     hidden.forEach((element)=>{
       element.classList.remove("hidden");
 
-    })
+    });
+
+    card.forEach((card)=>{
+      card.classList.add("hidden");
+    });
 
     edit.classList.add("hidden");
     grade.classList.add("hidden");

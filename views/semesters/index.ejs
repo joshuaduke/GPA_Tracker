@@ -14,7 +14,7 @@
     </ul>
   </div>
 
-
+    <!-- ==== EDIT =====   -->
     <div class="hidden" id="newBtn">
       <a href="/semesters/new">
         <i class="fas fa-plus-circle"></i>New Semester
@@ -22,12 +22,9 @@
     </div>
 
 
-    <!-- ==== EDIT =====   -->
   <section class="card_container">
     <% semesters.forEach((semester) =>{ %>
       
-      <!-- Delete Button -->
-
       <!-- Semester info -->
       <a class="info semesterInfo" href="/semesters/<%=semester._id %>/courses">
         <div class="card">
@@ -39,8 +36,7 @@
       
       <!-- Edit a semester -->
       <div class="hidden" id="courses_container">
-
-
+        <!-- Delete Button -->
         <div id="delete" class="hidden">
           <form action="/semesters/<%= semester._id%>?_method=DELETE" method="POST">
             <button><i class="fas fa-minus-circle"></i></button>

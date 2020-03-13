@@ -3,7 +3,10 @@
 <main>
   <div class="container_nav">
     <ul>
-      <li><a href="/semesters"> <i class="fas fa-chevron-left"></i> Semesters </a></li>
+      <li><a href="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades"> Grades </a></li>
+    </ul>
+    <ul>
+      <li> <%= course.name %></li>
     </ul>
     <ul>
       <li><a href="/semesters">Save </a></li>
@@ -13,14 +16,14 @@
   <div id="courses_container">
     <form id="main_form" action="/semesters/<%=semester._id%>/courses/<%=course._id%>/grades" method="POST">
       <div>
-        <input type="text" placeholder="Grade Name" name="grade[assignmentName]">
-        <label>Item Name</label>
+        <input type="text" placeholder="Grade Name" name="grade[assignmentName]" autocomplete="off">
+        <!-- <label>Item Name</label> -->
       </div>
       <div>
-        <input type="number" placeholder="Weight" name="grade[weight]">
-        <label>Weight</label>
+        <input type="number" placeholder="Weight" name="grade[weight]" autocomplete="off">
+        <!-- <label>Weight</label> -->
       </div>
-      <input type="submit">
+      <input id="submit" type="submit">
     </form>
   </div>
 </main>

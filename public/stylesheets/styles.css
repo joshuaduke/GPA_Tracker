@@ -125,6 +125,7 @@ main .container_nav {
   font-size: 0.9em;
   letter-spacing: 1px;
   padding: 10px 0;
+  border-radius: 5px 5px 0 0;
   background-color: #570000;
   display: -ms-grid;
   display: grid;
@@ -195,7 +196,7 @@ main #courses_container #main_form input {
   background-color: transparent;
   border-bottom: 1px solid #666;
   margin-right: 10px;
-  font-size: 13px;
+  font-size: 12px;
   padding: 5px;
   color: #999;
 }
@@ -210,7 +211,7 @@ main #courses_container #main_form #submit {
   color: #fdffff;
   border-radius: 5px;
   padding: 5px 10px;
-  margin-left: 5px;
+  margin-left: 0;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -269,7 +270,7 @@ main #courses_container #grade_form {
 }
 
 #delete button i {
-  color: #b10f2e;
+  color: red;
   font-size: 1.3em;
 }
 

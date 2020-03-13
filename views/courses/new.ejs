@@ -9,13 +9,13 @@
       <li>COURSES</li>
     </ul>
     <ul>
-      <li><a href="/semesters">Save </a></li>
+      <li><a href="/semesters/<%=semester._id%>/courses">Save </a></li>
     </ul>
   </div>
 
   <div id="courses_container">
-    <form id="main_form" action="/semesters/<%=semester._id%>/courses" method="POST">
-      <input type="text" placeholder="Course Name" name="course[name]">
+    <form id="main_form" action="/semesters/<%=semester._id%>/courses" method="POST" >
+      <input type="text" placeholder="Course Name" name="course[name]" autocomplete="off">
       <input id="submit" type="submit">
     </form>
   </div>
