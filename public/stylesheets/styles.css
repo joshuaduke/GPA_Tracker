@@ -59,7 +59,7 @@ p {
 }
 
 a:hover {
-  color: #de7c5a;
+  color: #fdffff;
 }
 
 .unclickable {
@@ -161,6 +161,15 @@ main #newBtn a {
   background-color: #de7c5a;
   border-radius: 5px;
   padding: 10px 20px;
+  font-family: "Montserrat", sans-serif;
+}
+
+main #newBtn a:hover {
+  background-color: #570000;
+}
+
+main #newBtn i {
+  padding: 0 5px;
 }
 
 main .card_container {

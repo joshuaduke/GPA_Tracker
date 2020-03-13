@@ -58,7 +58,7 @@ p{
 }
 
 a:hover{
-  color:$accent;
+  color:$background
 }
 
 .unclickable{
@@ -151,6 +151,14 @@ main{
       background-color:$accent;
       border-radius: 5px;
       padding:10px 20px;
+      font-family:$textBody;
+      &:hover{
+        background-color:$primaryVariant;
+      }
+    }
+
+    i{
+      padding:0 5px;
     }
   }
 

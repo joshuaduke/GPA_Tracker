@@ -4,6 +4,7 @@ let mongoose = require('mongoose');
 let courseSchema = new mongoose.Schema({
   name: String,
   courseGrade: Number,
+  courseCredit: Number,
   grades: [
     {
     type: mongoose.Schema.Types.ObjectId,
