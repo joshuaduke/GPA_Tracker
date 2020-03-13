@@ -40,4 +40,32 @@ console.log("Test", test)
 console.log("ttGrade", totalGrade);
 
 
+let yorkScale = 
+[
+  {letterGrade: "A+", gradePoint: 9.0},
+  {letterGrade: "A",  gradePoint: 8.0},
+  {letterGrade: "B+", gradePoint: 7.5},
+  {letterGrade: "B",  gradePoint: 6.0},
+  {letterGrade: "C+", gradePoint: 5.5},
+  {letterGrade: "C",  gradePoint: 4.0},
+  {letterGrade: "D+", gradePoint: 3.5},
+  {letterGrade: "D",  gradePoint: 2.0},
+  {letterGrade: "E",  gradePoint: 1.0},
+  {letterGrade: "F",  gradePoint: 0.0},
+]
+
+let senecaScale =
+[
+  {letterGrade: "A+", gradePoint: 4.0},
+  {letterGrade: "A",  gradePoint: 4.0},
+  {letterGrade: "B+", gradePoint: 3.5},
+  {letterGrade: "B",  gradePoint: 3.0},
+  {letterGrade: "C+", gradePoint: 2.5},
+  {letterGrade: "C",  gradePoint: 2.0},
+  {letterGrade: "D+", gradePoint: 1.5},
+  {letterGrade: "D",  gradePoint: 1.0},
+  {letterGrade: "F",  gradePoint: 0.0},
+]
+
+
 
