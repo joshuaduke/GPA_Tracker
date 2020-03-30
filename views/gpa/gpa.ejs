@@ -3,15 +3,12 @@
 <h3>Please select a grade scale...</h3>
 
 
-<form action="" method="#" onsubmit=" return displayScale()">
   <select name="gpa_scales" id="gpa_scales">
+    <option value=""></option>
     <option id="" value="yorkScale">York</option>
     <option id="seneca" value="senecaScale">Seneca</option>
   </select>
-  <button >Submit</button>
-
-  <p id="displayContent"></p>
-</form>
+  <button id="button" onclick="return displayScale()">Enter</button>
 
 <section id="york">
 
@@ -40,21 +37,24 @@ let york = document.querySelector("#york");
   {letterGrade: "F",  gradePoint: 0.0},
 ]
 
-
-
-yorkScale.forEach((grade)=>{
-  let pTag = document.createElement("p");
-  let node = document.createTextNode(grade.letterGrade);
-
-  let gPoint = document.createTextNode(grade.gradePoint);
-
-  pTag.appendChild(node);
-  pTag.appendChild(gPoint);
-  york.appendChild(pTag);
-});
-
 function displayScale(){
   let gpa_scales = document.querySelector("#gpa_scales");
   let selectedScale = gpa_scales.options[gpa_scales.selectedIndex].value;
+
+  if (selectedScale === "yorkScale"){
+    yorkScale.forEach((grade)=>{
+    let pTag = document.createElement("p");
+    let node = document.createTextNode(grade.letterGrade);
+
+    let gPoint = document.createTextNode(grade.gradePoint);
+
+    pTag.appendChild(node);
+    pTag.appendChild(gPoint);
+    york.appendChild(pTag);
+});
+
+  } else {
+    console.log("seneca scale");
+  }
 }
 </script>
