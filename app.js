@@ -317,6 +317,15 @@ app.delete("/semesters/:id/courses/:courseid/grades/:gradeid", (req , res)=>{
   });
 }); 
 
+// ====================================
+// ----- REST ROUTES FOR GPA page -----
+// ====================================
+
+app.get("/gpa/", (req, res)=>{
+  res.render("gpa/gpa");
+});
+
+
 app.listen("3000", process.env.PORT, ()=>{
   console.log("This server has started");
 })

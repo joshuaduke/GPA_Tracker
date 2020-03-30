@@ -50,7 +50,8 @@ function seedDB(){
         //create a course
         Course.create({
           name: "WEB222",
-          courseGrade: "95"
+          courseGrade: "95",
+          courseCredit: "3"
 
         }, (err, course)=>{
 

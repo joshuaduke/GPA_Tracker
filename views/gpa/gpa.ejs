@@ -1,0 +1,60 @@
+<%- include("../partials/header.ejs") %> 
+
+<h3>Please select a grade scale...</h3>
+
+
+<form action="" method="#" onsubmit=" return displayScale()">
+  <select name="gpa_scales" id="gpa_scales">
+    <option id="" value="yorkScale">York</option>
+    <option id="seneca" value="senecaScale">Seneca</option>
+  </select>
+  <button >Submit</button>
+
+  <p id="displayContent"></p>
+</form>
+
+<section id="york">
+
+</section>
+
+
+
+<%- include("../partials/footer.ejs") %> 
+
+
+<script>
+
+let york = document.querySelector("#york");
+
+  let yorkScale = 
+[
+  {letterGrade: "A+", gradePoint: 9.0},
+  {letterGrade: "A",  gradePoint: 8.0},
+  {letterGrade: "B+", gradePoint: 7.5},
+  {letterGrade: "B",  gradePoint: 6.0},
+  {letterGrade: "C+", gradePoint: 5.5},
+  {letterGrade: "C",  gradePoint: 4.0},
+  {letterGrade: "D+", gradePoint: 3.5},
+  {letterGrade: "D",  gradePoint: 2.0},
+  {letterGrade: "E",  gradePoint: 1.0},
+  {letterGrade: "F",  gradePoint: 0.0},
+]
+
+
+
+yorkScale.forEach((grade)=>{
+  let pTag = document.createElement("p");
+  let node = document.createTextNode(grade.letterGrade);
+
+  let gPoint = document.createTextNode(grade.gradePoint);
+
+  pTag.appendChild(node);
+  pTag.appendChild(gPoint);
+  york.appendChild(pTag);
+});
+
+function displayScale(){
+  let gpa_scales = document.querySelector("#gpa_scales");
+  let selectedScale = gpa_scales.options[gpa_scales.selectedIndex].value;
+}
+</script>
