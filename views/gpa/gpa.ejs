@@ -1,18 +1,131 @@
 <%- include("../partials/header.ejs") %> 
 
+<style>
+
+  #york, #seneca{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #york ul, #seneca ul{
+    list-style-type: none;
+  }
+  #york li, #seneca li{
+    color:#000;
+  }
+</style>
+
 <h3>Please select a grade scale...</h3>
 
 
   <select name="gpa_scales" id="gpa_scales">
     <option value=""></option>
-    <option id="" value="yorkScale">York</option>
-    <option id="seneca" value="senecaScale">Seneca</option>
+    <option id="yorkScale" value="yorkScale">York</option>
+    <option id="senecaScale" value="senecaScale">Seneca</option>
   </select>
   <button id="button" onclick="return displayScale()">Enter</button>
 
-<section id="york">
+<section id="showYork" class="hidden">
+  <div id="york">
+    <div>
+      <h3>Grade</h3>
+      <ul>
+        <li>A+</li>
+        <li>A</li>
+        <li>B+</li>
+        <li>B</li>
+        <li>C+</li>
+        <li>C</li>
+        <li>D+</li>
+        <li>D</li>
+        <li>E</li>
+        <li>F</li>
+      </ul>
+    </div>
 
+    <div>
+      <h3>Percent Range</h3>
+      <ul>
+        <li>90-100</li>
+        <li>80-89</li>
+        <li>75-79</li>
+        <li>70-74</li>
+        <li>65-69</li>
+        <li>60-64</li>
+        <li>55-59</li>
+        <li>50-54</li>
+        <li>below 50</li>
+        <li>below 40</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Grade Point</h3>
+      <ul>
+        <li>9</li>
+        <li>8</li>
+        <li>7</li>
+        <li>6</li>
+        <li>5</li>
+        <li>4</li>
+        <li>3</li>
+        <li>2</li>
+        <li>2</li>
+        <li>0</li>
+      </ul>
+    </div>
+  </div>
 </section>
+
+<section id="showSeneca" class="hidden">
+  <div id="seneca">
+    <div>
+      <h3>Grade</h3>
+      <ul>
+        <li>A+</li>
+        <li>A</li>
+        <li>B+</li>
+        <li>B</li>
+        <li>C+</li>
+        <li>C</li>
+        <li>D+</li>
+        <li>D</li>
+        <li>F</li>
+      </ul>
+    </div>
+  
+    <div>
+      <h3>Percent Range</h3>
+      <ul>
+        <li>90-100</li>
+        <li>80-89</li>
+        <li>75-79</li>
+        <li>70-74</li>
+        <li>65-69</li>
+        <li>60-64</li>
+        <li>55-59</li>
+        <li>50-54</li>
+        <li>0-49</li>
+      </ul>
+    </div>
+  
+    <div>
+      <h3>Grade Point</h3>
+      <ul>
+        <li>4</li>
+        <li>4</li>
+        <li>3.5</li>
+        <li>3.0</li>
+        <li>2.5</li>
+        <li>2.0</li>
+        <li>1.5</li>
+        <li>1.0</li>
+        <li>0</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -22,39 +135,25 @@
 <script>
 
 let york = document.querySelector("#york");
-
-  let yorkScale = 
-[
-  {letterGrade: "A+", gradePoint: 9.0},
-  {letterGrade: "A",  gradePoint: 8.0},
-  {letterGrade: "B+", gradePoint: 7.5},
-  {letterGrade: "B",  gradePoint: 6.0},
-  {letterGrade: "C+", gradePoint: 5.5},
-  {letterGrade: "C",  gradePoint: 4.0},
-  {letterGrade: "D+", gradePoint: 3.5},
-  {letterGrade: "D",  gradePoint: 2.0},
-  {letterGrade: "E",  gradePoint: 1.0},
-  {letterGrade: "F",  gradePoint: 0.0},
-]
+let seneca = document.querySelector("#seneca");
+let showYork = document.querySelector("#showYork");
+let showSeneca = document.querySelector("#showSeneca");
 
 function displayScale(){
   let gpa_scales = document.querySelector("#gpa_scales");
   let selectedScale = gpa_scales.options[gpa_scales.selectedIndex].value;
 
   if (selectedScale === "yorkScale"){
-    yorkScale.forEach((grade)=>{
-    let pTag = document.createElement("p");
-    let node = document.createTextNode(grade.letterGrade);
+    showYork.classList.remove("hidden");
+    showSeneca.classList.add("hidden");
 
-    let gPoint = document.createTextNode(grade.gradePoint);
-
-    pTag.appendChild(node);
-    pTag.appendChild(gPoint);
-    york.appendChild(pTag);
-});
-
+  } else if (selectedScale === "senecaScale"){
+    showSeneca.classList.remove("hidden");
+    showYork.classList.add("hidden");
   } else {
-    console.log("seneca scale");
+    showSeneca.classList.add("hidden");
+    showYork.classList.add("hidden");
+    console.log("please select a scale...")
   }
 }
 </script>

@@ -54,6 +54,29 @@ let yorkScale =
   {letterGrade: "F",  gradePoint: 0.0},
 ]
 
+//Display york scale 
+
+function displayScale(){
+  let gpa_scales = document.querySelector("#gpa_scales");
+  let selectedScale = gpa_scales.options[gpa_scales.selectedIndex].value;
+
+  if (selectedScale === "yorkScale"){
+    yorkScale.forEach((grade)=>{
+    let pTag = document.createElement("p");
+    let node = document.createTextNode(grade.letterGrade);
+
+    let gPoint = document.createTextNode(grade.gradePoint);
+
+    pTag.appendChild(node);
+    pTag.appendChild(gPoint);
+    york.appendChild(pTag);
+});
+
+  } else {
+    console.log("seneca scale");
+  }
+}
+
 let senecaScale =
 [
   {letterGrade: "A+", gradePoint: 4.0},
